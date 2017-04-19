@@ -8,6 +8,7 @@ namespace Salday.GameFramework.InputSystem
     public class InputHandler : MonoBehaviour
     {
         // Name of input handler represents its purpose and can be shown in settings for example
+        // It's also used in AllInputHandlers dic in InptuManager
         public string Name = "Player Movement";
         // If true it InputManager will work only with this handler if it is on the top of stack
         public bool HardBlock = false;
@@ -23,6 +24,9 @@ namespace Salday.GameFramework.InputSystem
         public Dictionary<KeyCode, InputListener> JustReleased = new Dictionary<KeyCode, InputListener>();
         #endregion
 
+        // All Listeners from all dictionaries
+        Dictionary<string, InputListener> AllListeners = new Dictionary<string, InputListener>();
+
         #region Lists for Editor
 
         // Lists are used to fill default Handler values tight from Unity Editor
@@ -34,32 +38,31 @@ namespace Salday.GameFramework.InputSystem
         List<InputListener> JusReleasedFromEditor = new List<InputListener>();
         #endregion
 
-        void Awake()
-        {
-            FillDictionaries();
-        }
-
-        /// <summary>
-        /// Fills dictionaries with data from lists
-        /// </summary>
-        public void FillDictionaries()
+        // Very inportant stuff. Called from InputManager Awake()
+        public void Init()
         {
             foreach (var l in JustPressedFromEditor)
             {
                 if (l.Positive != KeyCode.None) JustPressed.Add(l.Positive, l);
                 if (l.Alternative != KeyCode.None) JustPressed.Add(l.Alternative, l);
+
+                if (!AllListeners.ContainsKey(l.Name)) AllListeners.Add(l.Name, l);
             }
 
             foreach (var l in PressedFromEditor)
             {
                 if (l.Positive != KeyCode.None) Pressed.Add(l.Positive, l);
                 if (l.Alternative != KeyCode.None) Pressed.Add(l.Alternative, l);
+
+                if (!AllListeners.ContainsKey(l.Name)) AllListeners.Add(l.Name, l);
             }
 
             foreach (var l in JusReleasedFromEditor)
             {
                 if (l.Positive != KeyCode.None) JustReleased.Add(l.Positive, l);
                 if (l.Alternative != KeyCode.None) JustReleased.Add(l.Alternative, l);
+
+                if (!AllListeners.ContainsKey(l.Name)) AllListeners.Add(l.Name, l);
             }
         }
 
@@ -78,6 +81,18 @@ namespace Salday.GameFramework.InputSystem
                 .ToList();
         }
 
+        /// <summary>
+        /// Returns InputLIstener from the handler by name. 
+        /// It can return null if there is no listener with the name.
+        /// </summary>
+        /// <param name="name">Name of InputListener</param>
+        /// <returns></returns>
+        public InputListener GetListener(string name)
+        {
+            InputListener il;
+            AllListeners.TryGetValue(name, out il);
+            return il;
+        }
 
         #region JustPressed
         /// <summary>

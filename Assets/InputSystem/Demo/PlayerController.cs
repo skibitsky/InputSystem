@@ -13,11 +13,15 @@ public class PlayerController : MonoBehaviour
         // Getting InputHandler which controls player movement input
         inputHandler = GetComponent<InputHandler>();
 
+        // It can also be accessed by asking it right from InputManager using a name
+        // So you can get any InptuHandler without having ref to GameObject with the handler component
+        //inputHandler = InputManager.instance.GetInputHandler("Player Movement");
+
         // Adding action to the "Movement Right" (seted up from editor)
         inputHandler.AddPressedAction("Movement Right", MoveRight);
 
         // Addiing our handler to the Input Manager's stack of handlers
-        InputManager.instance.AddInputHandler(inputHandler);
+        InputManager.instance.AddInputHandlerToStack(inputHandler);
 
         // Let's try one more action after handler was added to the stack
         inputHandler.AddPressedAction("Movement Left", MoveLeft);
