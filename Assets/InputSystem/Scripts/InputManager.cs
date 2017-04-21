@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Linq;
 using System;
+using System.Collections;
 
 namespace Salday.GameFramework.InputSystem
 {
@@ -221,15 +222,79 @@ namespace Salday.GameFramework.InputSystem
         /// <summary>
         /// Changes specific listener key in runtime and calls method to update UI
         /// </summary>
+        /// <param name="handler">Name of the handler with the listener</param>
+        /// <param name="listener">Listener to be updated</param>
+        /// <param name="positive">True if Positive key. False if Alternative</param>
+        /// <param name="UIUpdater">Method to be called after key changed (can be null)</param>
+        public void ChangeKey(string handler, string listener, bool positive, Action UIUpdater)
+        {
+            var h = GetInputHandler(handler);
+            if (h != null)
+            {
+                var c = ListenForKeyToChange(h, listener, positive, UIUpdater);
+                StartCoroutine(c);
+            }
+
+        }
+
+        /// <summary>
+        /// Changes specific listener key in runtime and calls method to update UI
+        /// </summary>
         /// <param name="handler">Handler with the listener</param>
         /// <param name="listener">Listener to be updated</param>
         /// <param name="positive">True if Positive key. False if Alternative</param>
-        /// <param name="UIUpdater">Method to be called after key changed</param>
-        public void ChangeKey(string handler, string listener, bool positive, Action UIUpdater)
+        /// <param name="UIUpdater">Method to be called after key changed (can be null)</param>
+        public void ChangeKey(InputHandler handler, string listener, bool positive, Action UIUpdater)
         {
-            //(2017 - 04 - 19)
-            //TODO finish key change in runtime
-            //TODO ChangeKey without UIUpdater
+            if (handler != null)
+            {
+                var c = ListenForKeyToChange(handler, listener, positive, UIUpdater);
+                StartCoroutine(c);
+            }
+
+        }
+
+        IEnumerator ListenForKeyToChange(InputHandler handler, string listenerName, bool positive, Action UIUpdater)
+        {
+            KeyCode newKey = KeyCode.None;
+            KeyCode oldKey;
+
+            var listener = handler.GetListener(listenerName);
+            if (listener != null)
+            {
+                while (newKey == KeyCode.None)
+                {
+                    foreach (KeyCode keyCode in Enum.GetValues(typeof(KeyCode)))
+                    {
+                        if (Input.GetKey(keyCode))
+                        {
+                            newKey = keyCode;
+                            break;
+                        }
+                    }
+
+                    yield return new WaitForEndOfFrame();
+                }
+
+                if (positive)
+                {
+                    oldKey = listener.Positive;
+                    listener.Positive = newKey;
+                }
+                else
+                {
+                    oldKey = listener.Alternative;
+                    listener.Alternative = newKey;
+                }
+
+                if (UIUpdater != null)
+                {
+                    UIUpdater.Invoke();
+                }
+
+                handler.ChangeKey(listenerName, oldKey, newKey);
+                UpdateKeyCodes();
+            }
         }
 
     }

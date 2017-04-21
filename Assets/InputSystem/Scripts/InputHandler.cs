@@ -94,6 +94,37 @@ namespace Salday.GameFramework.InputSystem
             return il;
         }
 
+        /// <summary>
+        /// Changes key in runtime to access listener in all dictionaries. 
+        /// </summary>
+        /// <param name="listener">Input listener to be changed</param>
+        /// <param name="from">Old key</param>
+        /// <param name="to">New key</param>
+        public void ChangeKey(string listener, KeyCode from, KeyCode to)
+        {
+            InputListener temp;
+            Pressed.TryGetValue(from, out temp);
+            if (temp != null && temp.Name == listener && !Pressed.ContainsKey(to))
+            {
+                Pressed.Remove(from);
+                Pressed.Add(to, temp);
+            }
+
+            JustPressed.TryGetValue(from, out temp);
+            if (temp != null && temp.Name == listener && !JustPressed.ContainsKey(to))
+            {
+                JustPressed.Remove(from);
+                JustPressed.Add(to, temp);
+            }
+
+            JustReleased.TryGetValue(from, out temp);
+            if (temp != null && temp.Name == listener && !JustReleased.ContainsKey(to))
+            {
+                JustReleased.Remove(from);
+                JustReleased.Add(to, temp);
+            }
+        }
+
         #region JustPressed
         /// <summary>
         /// Adds passed action to the InputListiner of specific name in 
