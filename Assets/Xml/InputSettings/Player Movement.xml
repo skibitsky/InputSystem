@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<InputListener xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Movement Right</Name>
+  <Positive>D</Positive>
+  <Alternative>RightArrow</Alternative>
+</InputListener><?xml version="1.0" encoding="utf-8"?>
+<InputListener xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Movement Right</Name>
+  <Positive>D</Positive>
+  <Alternative>RightArrow</Alternative>
+</InputListener><?xml version="1.0" encoding="utf-8"?>
+<InputListener xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Movement Left</Name>
+  <Positive>A</Positive>
+  <Alternative>LeftArrow</Alternative>
+</InputListener><?xml version="1.0" encoding="utf-8"?>
+<InputListener xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Movement Left</Name>
+  <Positive>A</Positive>
+  <Alternative>LeftArrow</Alternative>
+</InputListener>

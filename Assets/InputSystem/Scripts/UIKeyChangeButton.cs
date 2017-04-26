@@ -4,7 +4,7 @@ using System;
 
 namespace Salday.GameFramework.InputSystem
 {
-    public class UIInputKeyChangeButton : MonoBehaviour
+    public class UIKeyChangeButton : MonoBehaviour
     {
         [Header("Button settings")]
         [SerializeField]

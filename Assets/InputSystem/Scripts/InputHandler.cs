@@ -2,6 +2,7 @@
 using UnityEngine;
 using System;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace Salday.GameFramework.InputSystem
 {
@@ -10,6 +11,10 @@ namespace Salday.GameFramework.InputSystem
         // Name of input handler represents its purpose and can be shown in settings for example
         // It's also used in AllInputHandlers dic in InptuManager
         public string Name = "Player Movement";
+        // If true - each listener action can be invoked only once per frame.
+        // So if both Positive and Alternative keys are pressed at one time, 
+        // Action won't be invoked twice.
+        public bool InvokeOncePerFrame = true;
         // If true it InputManager will work only with this handler if it is on the top of stack
         public bool HardBlock = false;
         // Should InputManager stop on this handler if it contains called key
@@ -63,6 +68,25 @@ namespace Salday.GameFramework.InputSystem
                 if (l.Alternative != KeyCode.None) JustReleased.Add(l.Alternative, l);
 
                 if (!AllListeners.ContainsKey(l.Name)) AllListeners.Add(l.Name, l);
+            }
+
+            SaveHandler();
+        }
+
+        void LateUpdate()
+        {
+            // If InvokeOncePerFrame, at the end of frame we have to set InputListener.Ivoked to false
+            // That it could be invoked in the next frame
+            if (InvokeOncePerFrame)
+            {
+                foreach (var il in JustPressed)
+                    il.Value.Invoked = false;
+
+                foreach (var il in Pressed)
+                    il.Value.Invoked = false;
+
+                foreach (var il in JustReleased)
+                    il.Value.Invoked = false;
             }
         }
 
@@ -123,6 +147,16 @@ namespace Salday.GameFramework.InputSystem
                 JustReleased.Remove(from);
                 JustReleased.Add(to, temp);
             }
+
+            SaveHandler();
+        }
+
+        /// <summary>
+        /// Save setting to the file.
+        /// </summary>
+        public void SaveHandler()
+        {
+            InputListenerIO.WriteHandler(this);
         }
 
         #region JustPressed

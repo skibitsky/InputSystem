@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using System.Xml.Serialization;
 
 namespace Salday.GameFramework.InputSystem
 {
@@ -9,7 +10,12 @@ namespace Salday.GameFramework.InputSystem
         public string Name;
         public KeyCode Positive;
         public KeyCode Alternative;
+        [XmlIgnore]
+        public bool Invoked = false; // True if it has been already invoked this frame
+        [XmlIgnore]
         public Action Actions;
+
+        public InputListener() { }
 
         public InputListener(KeyCode key)
         {
