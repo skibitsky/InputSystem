@@ -6,10 +6,8 @@ using UnityEngine;
 
 namespace Salday.GameFramework.InputSystem
 {
-    public class InputListenerIO
+    public class InputSaver
     {
-        //(2017-04-26)
-        //TODO reading from the file.
 
         /// <summary>
         /// Saves gived handler to the XML into _Data/Xml/InputSettings.
@@ -43,6 +41,33 @@ namespace Salday.GameFramework.InputSystem
 
         }
 
+        /// <summary>
+        /// Returns SavingHandler with all InputListener of asked handler.
+        /// Null if handler doesn't have a file
+        /// </summary>
+        /// <param name="name">Handlerto be readed</param>
+        public static SavingHandler ReadHandler(string name)
+        {
+            var folder = @"Xml\InputSettings";
+
+            var path = Path.Combine(Application.dataPath, folder);
+
+            var folderInf = new DirectoryInfo(path);
+            if (!Directory.Exists(path)) return null;
+
+            var filePath = Path.Combine(path, name) + ".xml";
+            if (!File.Exists(filePath)) return null;
+
+            using (var sr = new StreamReader(filePath))
+            {
+                var serializer = new XmlSerializer(typeof(SavingHandler));
+
+                var result = serializer.Deserialize(sr) as SavingHandler;
+
+                return result;
+            }
+        }
+
     }
 
 
@@ -71,14 +96,17 @@ namespace Salday.GameFramework.InputSystem
             Dictionary<KeyCode, InputListener> justReleased
             )
         {
-            foreach (var item in justPressed)
-                JustPressed.Add(item.Value);
+            foreach (var item in justPressed.Values)
+                if(!JustPressed.Contains(item))
+                    JustPressed.Add(item);
 
-            foreach (var item in pressed)
-                Pressed.Add(item.Value);
+            foreach (var item in pressed.Values)
+                if(!Pressed.Contains(item))
+                    Pressed.Add(item);
 
-            foreach (var item in justReleased)
-                JustReleased.Add(item.Value);
+            foreach (var item in justReleased.Values)
+                if(!Pressed.Contains(item))
+                    JustReleased.Add(item);
         }
     }
 }

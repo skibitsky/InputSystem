@@ -40,13 +40,37 @@ namespace Salday.GameFramework.InputSystem
         [SerializeField]
         List<InputListener> PressedFromEditor = new List<InputListener>();
         [SerializeField]
-        List<InputListener> JusReleasedFromEditor = new List<InputListener>();
+        List<InputListener> JustReleasedFromEditor = new List<InputListener>();
         #endregion
 
-        // Very inportant stuff. Called from InputManager Awake()
+
+        /// <summary>
+        /// Fills dictionaries with InputListeners from the saving file.
+        /// If file doesn't exist - with default data filled from the Editor.
+        /// <remark> Called from InputManager Awake() </remark>
+        /// </summary>
         public void Init()
         {
-            foreach (var l in JustPressedFromEditor)
+            List<InputListener> JustPressedSource;
+            List<InputListener> PressedSource;
+            List<InputListener> JustReleasedSource;
+
+            var savedHandler = InputSaver.ReadHandler(this.Name);
+
+            if(savedHandler != null)
+            {
+                JustPressedSource = savedHandler.JustPressed;
+                PressedSource = savedHandler.Pressed;
+                JustReleasedSource = savedHandler.JustReleased;
+            }
+            else
+            {
+                JustPressedSource = JustPressedFromEditor;
+                PressedSource = PressedFromEditor;
+                JustReleasedSource = JustReleasedFromEditor;
+            }
+
+            foreach (var l in JustPressedSource)
             {
                 if (l.Positive != KeyCode.None) JustPressed.Add(l.Positive, l);
                 if (l.Alternative != KeyCode.None) JustPressed.Add(l.Alternative, l);
@@ -54,7 +78,7 @@ namespace Salday.GameFramework.InputSystem
                 if (!AllListeners.ContainsKey(l.Name)) AllListeners.Add(l.Name, l);
             }
 
-            foreach (var l in PressedFromEditor)
+            foreach (var l in PressedSource)
             {
                 if (l.Positive != KeyCode.None) Pressed.Add(l.Positive, l);
                 if (l.Alternative != KeyCode.None) Pressed.Add(l.Alternative, l);
@@ -62,7 +86,7 @@ namespace Salday.GameFramework.InputSystem
                 if (!AllListeners.ContainsKey(l.Name)) AllListeners.Add(l.Name, l);
             }
 
-            foreach (var l in JusReleasedFromEditor)
+            foreach (var l in JustReleasedSource)
             {
                 if (l.Positive != KeyCode.None) JustReleased.Add(l.Positive, l);
                 if (l.Alternative != KeyCode.None) JustReleased.Add(l.Alternative, l);
@@ -70,7 +94,7 @@ namespace Salday.GameFramework.InputSystem
                 if (!AllListeners.ContainsKey(l.Name)) AllListeners.Add(l.Name, l);
             }
 
-            SaveHandler();
+            if(savedHandler == null) SaveHandler();
         }
 
         void LateUpdate()
@@ -156,7 +180,7 @@ namespace Salday.GameFramework.InputSystem
         /// </summary>
         public void SaveHandler()
         {
-            InputListenerIO.WriteHandler(this);
+            InputSaver.WriteHandler(this);
         }
 
         #region JustPressed
