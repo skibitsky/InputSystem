@@ -11,6 +11,7 @@ namespace Salday.GameFramework.InputSystem
         public KeyCode Positive;
         public KeyCode Alternative;
         [XmlIgnore]
+        [HideInInspector]
         public bool Invoked = false; // True if it has been already invoked this frame
         [XmlIgnore]
         public Action Actions;

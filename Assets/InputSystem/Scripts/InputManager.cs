@@ -290,8 +290,45 @@ namespace Salday.GameFramework.InputSystem
         /// </summary>
         public void RemoveInputHandlerFromStack()
         {
-            InputHandlersStack.Pop();
-            UpdateKeyCodes();
+            if(InputHandlersStack.Count != 0)
+            {
+                InputHandlersStack.Pop();
+                UpdateKeyCodes();
+            }      
+        }
+
+        /// <summary>
+        /// Removes passed input handler from the stack
+        /// </summary>
+        /// <param name="handler">Handler to be removed</param>
+        public void RemoveInputHandlerFromStack(InputHandler handler)
+        {
+            foreach (var h in InputHandlersStack)
+            {
+                if(h == handler && InputHandlersStack.Count != 0)
+                {
+                    InputHandlersStack.Pop();
+                    UpdateKeyCodes();
+                    break;
+                }
+            } 
+        }
+
+        /// <summary>
+        /// Removes passed input handler from the stack
+        /// </summary>
+        /// <param name="handler">Name of the handler to be removed</param>
+        public void RemoveInputHandlerFromStack(string handler)
+        {
+            foreach (var h in InputHandlersStack)
+            {
+                if (h.Name == handler && InputHandlersStack.Count != 0)
+                {
+                    InputHandlersStack.Pop();
+                    UpdateKeyCodes();
+                    break;
+                }
+            }
         }
 
         /// <summary>
