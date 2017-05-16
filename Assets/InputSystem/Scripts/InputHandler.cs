@@ -8,19 +8,44 @@ namespace Salday.GameFramework.InputSystem
 {
     public class InputHandler : MonoBehaviour
     {
+        [Header("Main Handler Settings")]
         // Name of input handler represents its purpose and can be shown in settings for example
         // It's also used in AllInputHandlers dic in InptuManager
         public string Name = "Player Movement";
+
         // If true - each listener action can be invoked only once per frame.
         // So if both Positive and Alternative keys are pressed at one time, 
         // Action won't be invoked twice.
         public bool InvokeOncePerFrame = true;
-        // If true it InputManager will work only with this handler if it is on the top of stack
-        public bool HardBlock = false;
-        // Should InputManager stop on this handler if it contains called key
-        public bool Block = true;
 
-        #region Dictionaries
+        #region Keys settings
+        [Header("Keys Settings")]
+        // If true it InputManager will work only with this handler's keys f it is on the top of stack
+        public bool HardBlockKeys = false;
+
+        // Should InputManager stop on this handler if it contains called key?
+        public bool BlockKeys = true;        
+
+        // Lists are used to fill default Handler values tight from Unity Editor
+        [SerializeField]
+        List<InputListener> JustPressedFromEditor = new List<InputListener>();
+        [SerializeField]
+        List<InputListener> PressedFromEditor = new List<InputListener>();
+        [SerializeField]
+        List<InputListener> JustReleasedFromEditor = new List<InputListener>();
+        #endregion
+
+        #region Axes settings
+        [Header("Axes Settings")]
+        // Should InputManager block all axes in handlers which comes after him in the Stack?
+        public bool HardBlockAxes = false;
+
+        // All Handler's axes
+        [SerializeField]
+        public List<InputAxis> Axes = new List<InputAxis>();
+        #endregion
+
+        #region Keys Dictionaries
         // JustPressed (Input.GetKeyDown)
         public Dictionary<KeyCode, InputListener> JustPressed = new Dictionary<KeyCode, InputListener>();
         // Pressed (Input.GetKey)
@@ -31,17 +56,6 @@ namespace Salday.GameFramework.InputSystem
 
         // All Listeners from all dictionaries
         Dictionary<string, InputListener> AllListeners = new Dictionary<string, InputListener>();
-
-        #region Lists for Editor
-
-        // Lists are used to fill default Handler values tight from Unity Editor
-        [SerializeField]
-        List<InputListener> JustPressedFromEditor = new List<InputListener>();
-        [SerializeField]
-        List<InputListener> PressedFromEditor = new List<InputListener>();
-        [SerializeField]
-        List<InputListener> JustReleasedFromEditor = new List<InputListener>();
-        #endregion
 
 
         /// <summary>
@@ -62,6 +76,7 @@ namespace Salday.GameFramework.InputSystem
                 JustPressedSource = savedHandler.JustPressed;
                 PressedSource = savedHandler.Pressed;
                 JustReleasedSource = savedHandler.JustReleased;
+                Axes = savedHandler.Axes;
             }
             else
             {

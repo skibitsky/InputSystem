@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
         // And you can always delete any added action from listener
         // accessing it by KeyCode or Name
         //inputHandler.RemovePressedAction(KeyCode.D, MoveRight);
+        
     }
 
     void MoveLeft()

@@ -17,6 +17,10 @@ namespace Salday.GameFramework.InputSystem
         // List of all keys used in active Handlers to loop through
         List<KeyCode> KeyCodesToListen = new List<KeyCode>();
 
+        // All axes which should return value from UnityEngine.Input
+        // Updated in UpdateStack()
+        Dictionary<string, InputAxis> AxesToListen = new Dictionary<string, InputAxis>();
+
         // Collection of all inited InptuHandlers. Key = InptuHandler.Name
         Dictionary<string, InputHandler> AllInptuHandlers = new Dictionary<string, InputHandler>();
 
@@ -38,11 +42,10 @@ namespace Salday.GameFramework.InputSystem
 
         void Start()
         {
-            UpdateKeyCodes();
+            UpdateStack();
         }
 
         // Loops through all InputHandlers in the stack (frotm the top to bottom) 
-        // It's the only method which interacts with Unity Input System
         void Update()
         {
             InputListener il;
@@ -56,7 +59,7 @@ namespace Salday.GameFramework.InputSystem
                     // Taking top handler
                     ih = InputHandlersStack.Peek();
                     // If this handler HardBlock we have to work only with it
-                    if (ih.HardBlock)
+                    if (ih.HardBlockKeys)
                     {
                         // Checking if listener has pressed key
                         if (ih.JustPressed.TryGetValue(key, out il))
@@ -106,7 +109,7 @@ namespace Salday.GameFramework.InputSystem
                                         il.Actions.Invoke();
                                 }
                                 // If it has Block we won't go to the other handlers with this key
-                                if (handler.Block) break;
+                                if (handler.BlockKeys) break;
                             }
                         }
                     }
@@ -116,7 +119,7 @@ namespace Salday.GameFramework.InputSystem
                 if (Input.GetKey(key))
                 {
                     ih = InputHandlersStack.Peek();
-                    if (ih.HardBlock)
+                    if (ih.HardBlockKeys)
                     {
                         if (ih.Pressed.TryGetValue(key, out il))
                         {
@@ -154,7 +157,7 @@ namespace Salday.GameFramework.InputSystem
                                     else
                                         il.Actions.Invoke();
                                 }
-                                if (handler.Block) break;
+                                if (handler.BlockKeys) break;
                             }
                         }
                     }
@@ -164,7 +167,7 @@ namespace Salday.GameFramework.InputSystem
                 if (Input.GetKeyUp(key))
                 {
                     ih = InputHandlersStack.Peek();
-                    if (ih.HardBlock)
+                    if (ih.HardBlockKeys)
                     {
                         if (ih.JustReleased.TryGetValue(key, out il))
                         {
@@ -202,7 +205,7 @@ namespace Salday.GameFramework.InputSystem
                                     else
                                         il.Actions.Invoke();
                                 }
-                                if (handler.Block) break;
+                                if (handler.BlockKeys) break;
                             }
                         }
                     }
@@ -216,15 +219,29 @@ namespace Salday.GameFramework.InputSystem
         /// <summary>
         /// Updates a list of all used keys.
         /// </summary>
-        public void UpdateKeyCodes()
+        public void UpdateStack()
         {
+            var continueAddingAxes = true; 
+
             KeyCodesToListen.Clear();
+            AxesToListen.Clear();
             foreach (var ih in InputHandlersStack)
             {
+                // Getting keys
                 if (KeyCodesToListen.Count == 0)
                     KeyCodesToListen = ih.GetAllKeyCodes();
                 else
                     KeyCodesToListen.Concat(ih.GetAllKeyCodes());
+
+                // Getting axes
+                if(continueAddingAxes)
+                {
+                    foreach(var axis in ih.Axes)
+                        AxesToListen.Add(axis.Name, axis);
+
+                    if (ih.HardBlockAxes)
+                        continueAddingAxes = false;
+                }
             }
         }
 
@@ -256,6 +273,16 @@ namespace Salday.GameFramework.InputSystem
         }
 
         /// <summary>
+        /// Returns the value of the virtual axis identified by axisName if allowed
+        /// </summary>
+        public float GetAxis(string axisName)
+        {
+            if (AxesToListen.ContainsKey(axisName))
+                return Input.GetAxis(AxesToListen[axisName].GetAxisName());
+            else return 0;
+        }
+
+        /// <summary>
         /// Adds passed InputHandler to the top of stack
         /// </summary>
         /// <param name="ih">InputHandler to be pushed</param>
@@ -263,7 +290,7 @@ namespace Salday.GameFramework.InputSystem
         public bool AddInputHandlerToStack(InputHandler ih)
         {
             InputHandlersStack.Push(ih);
-            UpdateKeyCodes();
+            UpdateStack();
             return true;
         }
 
@@ -279,7 +306,7 @@ namespace Salday.GameFramework.InputSystem
             if (h != null)
             {
                 InputHandlersStack.Push(AllInptuHandlers[name]);
-                UpdateKeyCodes();
+                UpdateStack();
                 return true;
             }
             else return false;
@@ -293,7 +320,7 @@ namespace Salday.GameFramework.InputSystem
             if(InputHandlersStack.Count != 0)
             {
                 InputHandlersStack.Pop();
-                UpdateKeyCodes();
+                UpdateStack();
             }      
         }
 
@@ -308,7 +335,7 @@ namespace Salday.GameFramework.InputSystem
                 if(h == handler && InputHandlersStack.Count != 0)
                 {
                     InputHandlersStack.Pop();
-                    UpdateKeyCodes();
+                    UpdateStack();
                     break;
                 }
             } 
@@ -325,7 +352,7 @@ namespace Salday.GameFramework.InputSystem
                 if (h.Name == handler && InputHandlersStack.Count != 0)
                 {
                     InputHandlersStack.Pop();
-                    UpdateKeyCodes();
+                    UpdateStack();
                     break;
                 }
             }
@@ -405,7 +432,7 @@ namespace Salday.GameFramework.InputSystem
                 }
 
                 handler.ChangeKey(listenerName, oldKey, newKey);
-                UpdateKeyCodes();
+                UpdateStack();
             }
         }
 

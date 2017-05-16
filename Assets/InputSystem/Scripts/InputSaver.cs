@@ -32,7 +32,10 @@ namespace Salday.GameFramework.InputSystem
             {
                 var serializer = new XmlSerializer(typeof(SavingHandler));
 
-                var sh = new SavingHandler(handler.JustPressed, handler.Pressed, handler.JustReleased);
+                var sh = new SavingHandler(handler.JustPressed, 
+                    handler.Pressed, 
+                    handler.JustReleased, 
+                    handler.Axes);
 
                 serializer.Serialize(sw, sh);
 
@@ -82,18 +85,18 @@ namespace Salday.GameFramework.InputSystem
         public List<InputListener> Pressed = new List<InputListener>();
         [XmlArray("JustReleased")]
         public List<InputListener> JustReleased = new List<InputListener>();
+        [XmlArray("Axes")]
+        public List<InputAxis> Axes = new List<InputAxis>();
 
         /// <summary>
         /// Dont't use it. It's required by XmlSerializer.
         /// </summary>
-        public SavingHandler()
-        {
-
-        }
+        public SavingHandler() { }
 
         public SavingHandler(Dictionary<KeyCode, InputListener> justPressed,
             Dictionary<KeyCode, InputListener> pressed,
-            Dictionary<KeyCode, InputListener> justReleased
+            Dictionary<KeyCode, InputListener> justReleased,
+            List<InputAxis> axes
             )
         {
             foreach (var item in justPressed.Values)
@@ -107,6 +110,8 @@ namespace Salday.GameFramework.InputSystem
             foreach (var item in justReleased.Values)
                 if(!Pressed.Contains(item))
                     JustReleased.Add(item);
+
+            Axes = axes;
         }
     }
 }

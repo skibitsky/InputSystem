@@ -7,7 +7,7 @@ namespace Salday.GameFramework.InputSystem
     [Serializable]
     public class InputListener
     {
-        public string Name;
+        public string Name = "Untiteled";
         public KeyCode Positive;
         public KeyCode Alternative;
         [XmlIgnore]
@@ -20,7 +20,6 @@ namespace Salday.GameFramework.InputSystem
 
         public InputListener(KeyCode key)
         {
-            this.Name = "Untitled";
             this.Positive = key;
         }
 

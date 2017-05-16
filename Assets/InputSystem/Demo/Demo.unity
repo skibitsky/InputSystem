@@ -351,8 +351,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Player Movement
   InvokeOncePerFrame: 1
-  HardBlock: 0
-  Block: 1
+  HardBlockKeys: 0
+  BlockKeys: 1
   JustPressedFromEditor: []
   PressedFromEditor:
   - Name: Movement Right
@@ -364,6 +364,11 @@ MonoBehaviour:
     Alternative: 276
     Invoked: 0
   JustReleasedFromEditor: []
+  HardBlockAxes: 0
+  Axes:
+  - Name: test
+    Type: 0
+    AlreadyUsed: 0
 --- !u!1 &184765626
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,11 +1174,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Chat
   InvokeOncePerFrame: 0
-  HardBlock: 1
-  Block: 0
+  HardBlockKeys: 0
+  BlockKeys: 1
   JustPressedFromEditor: []
   PressedFromEditor: []
   JustReleasedFromEditor: []
+  HardBlockAxes: 1
+  Axes: []
 --- !u!114 &914173089
 MonoBehaviour:
   m_ObjectHideFlags: 0
