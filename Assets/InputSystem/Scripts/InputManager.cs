@@ -24,7 +24,7 @@ namespace Salday.GameFramework.InputSystem
         // Collection of all inited InptuHandlers. Key = InptuHandler.Name
         Dictionary<string, InputHandler> AllInptuHandlers = new Dictionary<string, InputHandler>();
 
-        // Singleton and handlers init stuff
+        // Singleton stuff
         void Awake()
         {
             if (InputManager.instance == null)
@@ -217,7 +217,8 @@ namespace Salday.GameFramework.InputSystem
         }
 
         /// <summary>
-        /// Updates a list of all used keys.
+        /// Updates a list of all used keysand axes.
+        /// Sets up Cursor.lockState.
         /// </summary>
         public void UpdateStack()
         {
@@ -243,6 +244,8 @@ namespace Salday.GameFramework.InputSystem
                         continueAddingAxes = false;
                 }
             }
+
+            Cursor.lockState = InputHandlersStack.Peek().CursorLockMode;
         }
 
         /// <summary>
@@ -256,8 +259,6 @@ namespace Salday.GameFramework.InputSystem
                 handler.Init();
                 AllInptuHandlers.Add(handler.Name, handler);
             }
-            else
-                Debug.LogErrorFormat("Input Handler <b>{0}</b> already exists.", handler.Name);
         }
 
         /// <summary>

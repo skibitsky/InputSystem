@@ -18,6 +18,10 @@ namespace Salday.GameFramework.InputSystem
         // Action won't be invoked twice.
         public bool InvokeOncePerFrame = true;
 
+        // InputManager sets up this value to the Cursor.lockState if the handler
+        // is on the top of the Stack
+        public CursorLockMode CursorLockMode = CursorLockMode.Confined;
+
         #region Keys settings
         [Header("Keys Settings")]
         // If true it InputManager will work only with this handler's keys f it is on the top of stack
@@ -57,6 +61,12 @@ namespace Salday.GameFramework.InputSystem
         // All Listeners from all dictionaries
         Dictionary<string, InputListener> AllListeners = new Dictionary<string, InputListener>();
 
+        // Askes InputManager to init this handler 
+        // in case GameObject was created after InputManager Awake.
+        void Start()
+        {
+            InputManager.instance.InitNewInputHandler(this);
+        }
 
         /// <summary>
         /// Fills dictionaries with InputListeners from the saving file.
