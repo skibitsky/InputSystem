@@ -63,7 +63,7 @@ namespace Salday.GameFramework.InputSystem
 
         // Askes InputManager to init this handler 
         // in case GameObject was created after InputManager Awake.
-        void Start()
+        void OnEnable()
         {
             InputManager.instance.InitNewInputHandler(this);
         }

@@ -245,7 +245,8 @@ namespace Salday.GameFramework.InputSystem
                 }
             }
 
-            Cursor.lockState = InputHandlersStack.Peek().CursorLockMode;
+            if(InputHandlersStack.Count != 0)
+                Cursor.lockState = InputHandlersStack.Peek().CursorLockMode;
         }
 
         /// <summary>
