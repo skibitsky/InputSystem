@@ -30,12 +30,6 @@ namespace Salday.GameFramework.InputSystem
             if (InputManager.instance == null)
             {
                 InputManager.instance = this;
-
-                InputHandler[] handlersToBeInited = GameObject.FindObjectsOfType<InputHandler>();
-                foreach (var h in handlersToBeInited)
-                {
-                    InitNewInputHandler(h);
-                }
             }
             else Destroy(this);
         }
@@ -358,6 +352,78 @@ namespace Salday.GameFramework.InputSystem
                     break;
                 }
             }
+        }
+
+        /// <summary>
+        /// Returns true while the user holds down the key identified by InputListener name.
+        /// Takes into account handler BlockKeys and HardBlockKeys.
+        /// </summary>
+        public bool GetPressed(string listenerName)
+        {
+            foreach (var h in InputHandlersStack)
+            {
+                foreach (var il in h.Pressed.Values)
+                {
+                    if(Input.GetKey(il.Positive)
+                        || Input.GetKey(il.Alternative))
+                    {
+                        if (il.Name == listenerName)
+                            return true;
+                        else if (h.BlockKeys)
+                            return false;
+                    }
+                }
+                if (h.HardBlockKeys) return false;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Returns true during the frame the user starts pressing down the key identified by InputListener name.
+        /// Takes into account handler BlockKeys and HardBlockKeys.
+        /// </summary>
+        public bool GetJustPressed(string listenerName)
+        {
+            foreach (var h in InputHandlersStack)
+            {
+                foreach (var il in h.Pressed.Values)
+                {
+                    if (Input.GetKeyDown(il.Positive)
+                        || Input.GetKeyDown(il.Alternative))
+                    {
+                        if (il.Name == listenerName)
+                            return true;
+                        else if (h.BlockKeys)
+                            return false;
+                    }
+                }
+                if (h.HardBlockKeys) return false;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Returns true during the frame the user releases the key identified by InputListener name.
+        /// Takes into account handler BlockKeys and HardBlockKeys.
+        /// </summary>
+        public bool GetJustReleased(string listenerName)
+        {
+            foreach (var h in InputHandlersStack)
+            {
+                foreach (var il in h.Pressed.Values)
+                {
+                    if (Input.GetKeyUp(il.Positive)
+                        || Input.GetKeyUp(il.Alternative))
+                    {
+                        if (il.Name == listenerName)
+                            return true;
+                        else if (h.BlockKeys)
+                            return false;
+                    }
+                }
+                if (h.HardBlockKeys) return false;
+            }
+            return false;
         }
 
         /// <summary>

@@ -36,6 +36,12 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        // And you can always ask for certain Handler key anytime
+        //Debug.Log("Movement right: " + InputManager.instance.GetPressed("Movement Right"));
+    }
+
     void MoveLeft()
     {
         transform.position += Vector3.left * speed;

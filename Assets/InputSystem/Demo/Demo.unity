@@ -1173,8 +1173,8 @@ MonoBehaviour:
   Name: Chat
   InvokeOncePerFrame: 0
   CursorLockMode: 2
-  HardBlockKeys: 0
-  BlockKeys: 1
+  HardBlockKeys: 1
+  BlockKeys: 0
   JustPressedFromEditor: []
   PressedFromEditor: []
   JustReleasedFromEditor: []
