@@ -357,23 +357,79 @@ namespace Salday.GameFramework.InputSystem
         /// <summary>
         /// Returns true while the user holds down the key identified by InputListener name.
         /// Takes into account handler BlockKeys and HardBlockKeys.
+        /// <para>It's better to pass InputListener, not a name.</para>
         /// </summary>
         public bool GetPressed(string listenerName)
         {
-            foreach (var h in InputHandlersStack)
+            // We have to get keys of the listener,
+            // that's why it's better to pass listener, 
+            // no need for foreach and if
+            KeyCode Pos = KeyCode.None;
+            KeyCode Alt = KeyCode.None;
+            foreach(var h in AllInptuHandlers.Values)
             {
-                foreach (var il in h.Pressed.Values)
+                var l = h.GetListener(listenerName);
+                if(listenerName == l.Name)
                 {
-                    if(Input.GetKey(il.Positive)
-                        || Input.GetKey(il.Alternative))
-                    {
-                        if (il.Name == listenerName)
-                            return true;
-                        else if (h.BlockKeys)
-                            return false;
-                    }
+                    Pos = l.Positive;
+                    Alt = l.Alternative;
+                    break;
                 }
-                if (h.HardBlockKeys) return false;
+            }
+
+            bool block = false;
+            if (Input.GetKey(Pos) || Input.GetKey(Alt))
+            {
+                foreach (var h in InputHandlersStack)
+                {
+                    foreach (var l in h.Pressed.Values)
+                    {
+                        if (l.Name == listenerName)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            if (l.Positive == Pos || l.Alternative == Alt)
+                                if (h.BlockKeys)
+                                    block = true;
+                        }
+                    }
+                    if (h.HardBlockKeys || block)
+                        return false;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Returns true while the user holds down the key identified by InputListener name.
+        /// Takes into account handler BlockKeys and HardBlockKeys. <para />
+        /// <para>It's better to pass InputListener, not a name.</para>
+        /// </summary>
+        public bool GetPressed(InputListener listener)
+        {
+            bool block = false;
+            if (Input.GetKey(listener.Positive) || Input.GetKey(listener.Alternative))
+            {
+                foreach (var h in InputHandlersStack)
+                {
+                    foreach (var l in h.Pressed.Values)
+                    {
+                        if (l.Name == listener.Name)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            if (l.Positive == listener.Positive || l.Alternative == listener.Alternative)
+                                if (h.BlockKeys)
+                                    block = true;
+                        }
+                    }
+                    if (h.HardBlockKeys || block)
+                        return false;
+                }
             }
             return false;
         }
@@ -381,23 +437,79 @@ namespace Salday.GameFramework.InputSystem
         /// <summary>
         /// Returns true during the frame the user starts pressing down the key identified by InputListener name.
         /// Takes into account handler BlockKeys and HardBlockKeys.
+        /// <para>It's better to pass InputListener, not a name.</para>
         /// </summary>
         public bool GetJustPressed(string listenerName)
         {
-            foreach (var h in InputHandlersStack)
+            // We have to get keys of the listener,
+            // that's why it's better to pass listener, 
+            // no need for foreach and if
+            KeyCode Pos = KeyCode.None;
+            KeyCode Alt = KeyCode.None;
+            foreach (var h in AllInptuHandlers.Values)
             {
-                foreach (var il in h.Pressed.Values)
+                var l = h.GetListener(listenerName);
+                if (listenerName == l.Name)
                 {
-                    if (Input.GetKeyDown(il.Positive)
-                        || Input.GetKeyDown(il.Alternative))
-                    {
-                        if (il.Name == listenerName)
-                            return true;
-                        else if (h.BlockKeys)
-                            return false;
-                    }
+                    Pos = l.Positive;
+                    Alt = l.Alternative;
+                    break;
                 }
-                if (h.HardBlockKeys) return false;
+            }
+
+            bool block = false;
+            if (Input.GetKeyDown(Pos) || Input.GetKeyDown(Alt))
+            {
+                foreach (var h in InputHandlersStack)
+                {
+                    foreach (var l in h.JustPressed.Values)
+                    {
+                        if (l.Name == listenerName)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            if (l.Positive == Pos || l.Alternative == Alt)
+                                if (h.BlockKeys)
+                                    block = true;
+                        }
+                    }
+                    if (h.HardBlockKeys || block)
+                        return false;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Returns true during the frame the user starts pressing down the key identified by InputListener name.
+        /// Takes into account handler BlockKeys and HardBlockKeys.
+        /// <para>It's better to pass InputListener, not a name.</para>
+        /// </summary>
+        public bool GetJustPressed(InputListener listener)
+        {
+            bool block = false;
+            if (Input.GetKeyDown(listener.Positive) || Input.GetKeyDown(listener.Alternative))
+            {
+                foreach (var h in InputHandlersStack)
+                {
+                    foreach (var l in h.JustPressed.Values)
+                    {
+                        if (l.Name == listener.Name)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            if (l.Positive == listener.Positive || l.Alternative == listener.Alternative)
+                                if (h.BlockKeys)
+                                    block = true;
+                        }
+                    }
+                    if (h.HardBlockKeys || block)
+                        return false;
+                }
             }
             return false;
         }
@@ -405,23 +517,79 @@ namespace Salday.GameFramework.InputSystem
         /// <summary>
         /// Returns true during the frame the user releases the key identified by InputListener name.
         /// Takes into account handler BlockKeys and HardBlockKeys.
+        /// <para>It's better to pass InputListener, not a name.</para>
         /// </summary>
         public bool GetJustReleased(string listenerName)
         {
-            foreach (var h in InputHandlersStack)
+            // We have to get keys of the listener,
+            // that's why it's better to pass listener, 
+            // no need for foreach and if
+            KeyCode Pos = KeyCode.None;
+            KeyCode Alt = KeyCode.None;
+            foreach (var h in AllInptuHandlers.Values)
             {
-                foreach (var il in h.Pressed.Values)
+                var l = h.GetListener(listenerName);
+                if (listenerName == l.Name)
                 {
-                    if (Input.GetKeyUp(il.Positive)
-                        || Input.GetKeyUp(il.Alternative))
-                    {
-                        if (il.Name == listenerName)
-                            return true;
-                        else if (h.BlockKeys)
-                            return false;
-                    }
+                    Pos = l.Positive;
+                    Alt = l.Alternative;
+                    break;
                 }
-                if (h.HardBlockKeys) return false;
+            }
+
+            bool block = false;
+            if (Input.GetKeyUp(Pos) || Input.GetKeyUp(Alt))
+            {
+                foreach (var h in InputHandlersStack)
+                {
+                    foreach (var l in h.JustReleased.Values)
+                    {
+                        if (l.Name == listenerName)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            if (l.Positive == Pos || l.Alternative == Alt)
+                                if (h.BlockKeys)
+                                    block = true;
+                        }
+                    }
+                    if (h.HardBlockKeys || block)
+                        return false;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Returns true during the frame the user releases the key identified by InputListener name. name.
+        /// Takes into account handler BlockKeys and HardBlockKeys.
+        /// <para>It's better to pass InputListener, not a name.</para>
+        /// </summary>
+        public bool GetJustReleased(InputListener listener)
+        {
+            bool block = false;
+            if (Input.GetKeyUp(listener.Positive) || Input.GetKeyUp(listener.Alternative))
+            {
+                foreach (var h in InputHandlersStack)
+                {
+                    foreach (var l in h.JustReleased.Values)
+                    {
+                        if (l.Name == listener.Name)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            if (l.Positive == listener.Positive || l.Alternative == listener.Alternative)
+                                if (h.BlockKeys)
+                                    block = true;
+                        }
+                    }
+                    if (h.HardBlockKeys || block)
+                        return false;
+                }
             }
             return false;
         }
