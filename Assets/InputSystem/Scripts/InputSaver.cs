@@ -15,6 +15,9 @@ namespace Salday.GameFramework.InputSystem
         /// <param name="handler">Handler to be saved</param>
         public static void WriteHandler(InputHandler handler)
         {
+            if (Application.isEditor)
+                return;
+
             var folder = @"Xml\InputSettings";
 
             var path = Path.Combine(Application.dataPath, folder);

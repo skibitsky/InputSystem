@@ -79,9 +79,7 @@ namespace Salday.GameFramework.InputSystem
             List<InputListener> PressedSource;
             List<InputListener> JustReleasedSource;
 
-            #if UNITY_STANDALONE
             var savedHandler = InputSaver.ReadHandler(this.Name);
-            #endif
 
             if(savedHandler != null)
             {
@@ -121,9 +119,7 @@ namespace Salday.GameFramework.InputSystem
                 if (!AllListeners.ContainsKey(l.Name)) AllListeners.Add(l.Name, l);
             }
 
-            #if UNITY_STANDALONE
             if (savedHandler == null) SaveHandler();
-            #endif
         }
 
         void LateUpdate()
