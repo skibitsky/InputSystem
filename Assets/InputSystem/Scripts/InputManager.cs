@@ -251,8 +251,9 @@ namespace Salday.GameFramework.InputSystem
         {
             if (!AllInptuHandlers.ContainsKey(handler.Name))
             {
-                handler.Init();
-                AllInptuHandlers.Add(handler.Name, handler);
+                var inited = handler.Init();
+                if(inited)
+                    AllInptuHandlers.Add(handler.Name, handler);
             }
         }
 

@@ -22,6 +22,9 @@ namespace Salday.GameFramework.InputSystem
         // is on the top of the Stack
         public CursorLockMode CursorLockMode = CursorLockMode.Confined;
 
+        // To avoid double init.
+        private bool inited = false;
+
         #region Keys settings
         [Header("Keys Settings")]
         // If true it InputManager will work only with this handler's keys f it is on the top of stack
@@ -73,8 +76,10 @@ namespace Salday.GameFramework.InputSystem
         /// If file doesn't exist - with default data filled from the Editor.
         /// <remark> Called from InputManager Awake() </remark>
         /// </summary>
-        public void Init()
+        public bool Init()
         {
+            if (inited) return false ;
+
             List<InputListener> JustPressedSource;
             List<InputListener> PressedSource;
             List<InputListener> JustReleasedSource;
@@ -119,7 +124,11 @@ namespace Salday.GameFramework.InputSystem
                 if (!AllListeners.ContainsKey(l.Name)) AllListeners.Add(l.Name, l);
             }
 
+            inited = false;
+
             if (savedHandler == null) SaveHandler();
+
+            return true;
         }
 
         void LateUpdate()

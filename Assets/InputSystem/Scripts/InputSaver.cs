@@ -22,8 +22,6 @@ namespace Salday.GameFramework.InputSystem
 
             var path = Path.Combine(Application.dataPath, folder);
 
-            var folderInf = new DirectoryInfo(path);
-
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -58,7 +56,6 @@ namespace Salday.GameFramework.InputSystem
 
             var path = Path.Combine(Application.dataPath, folder);
 
-            var folderInf = new DirectoryInfo(path);
             if (!Directory.Exists(path)) return null;
 
             var filePath = Path.Combine(path, name) + ".xml";
