@@ -3,6 +3,7 @@
     public enum InputAxisType
     {
         MouseHorizontal = 0,
-        MouseVertical
+        MouseVertical,
+        MouseScrollWheel
     }
 }

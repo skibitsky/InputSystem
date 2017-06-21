@@ -24,6 +24,9 @@ namespace Salday.GameFramework.InputSystem
         // Collection of all inited InptuHandlers. Key = InptuHandler.Name
         Dictionary<string, InputHandler> AllInptuHandlers = new Dictionary<string, InputHandler>();
 
+        // Current Cursor lock state/mode
+        CursorLockMode CurrentCursorLockMode = CursorLockMode.None;
+
         // Singleton stuff
         void Awake()
         {
@@ -210,6 +213,14 @@ namespace Salday.GameFramework.InputSystem
 
         }
 
+        void FixedUpdate()
+        {
+            // We assign cursor lock state so many times because it can fuck up
+            // in different situation depending on IS usage in your project 
+            // (for example when loading new scene with DontSestroyOnLoad handler etc...)
+            Cursor.lockState = CurrentCursorLockMode;
+        }
+
         /// <summary>
         /// Updates a list of all used keysand axes.
         /// Sets up Cursor.lockState.
@@ -240,7 +251,7 @@ namespace Salday.GameFramework.InputSystem
             }
 
             if(InputHandlersStack.Count != 0)
-                Cursor.lockState = InputHandlersStack.Peek().CursorLockMode;
+                CurrentCursorLockMode = InputHandlersStack.Peek().CursorLockMode;
         }
 
         /// <summary>

@@ -6,10 +6,13 @@ namespace Salday.GameFramework.InputSystem
     [System.Serializable]
     public class InputAxis
     {
+        // Names of axis in Unity InputManager:
         [XmlIgnore]
         const string MOUSE_HORIZONTAL = "Mouse X";
         [XmlIgnore]
         const string MOUSE_VERTICAL = "Mouse Y";
+        [XmlIgnore]
+        const string MOUSE_SCROLLWHEEL = "Mouse ScrollWheel";
 
         public string Name = "Untiteled";
         public InputAxisType Type;
@@ -28,6 +31,8 @@ namespace Salday.GameFramework.InputSystem
                     return MOUSE_HORIZONTAL;
                 case InputAxisType.MouseVertical:
                     return MOUSE_VERTICAL;
+                case InputAxisType.MouseScrollWheel:
+                    return MOUSE_SCROLLWHEEL;
                 default:
                     return "Wrong Axis Type";
             }
