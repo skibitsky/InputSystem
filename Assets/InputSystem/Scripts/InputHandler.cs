@@ -13,13 +13,15 @@ namespace Salday.GameFramework.InputSystem
         // It's also used in AllInputHandlers dic in InptuManager
         public string Name = "Player Movement";
 
-        // If true - each listener action can be invoked only once per frame.
+        // If true - each listener action will be invoked only once per frame.
         // So if both Positive and Alternative keys are pressed at one time, 
         // Action won't be invoked twice.
+        [Tooltip("If true - each listener action will be invoked only once per frame")]
         public bool InvokeOncePerFrame = true;
 
         // InputManager sets up this value to the Cursor.lockState if the handler
         // is on the top of the Stack
+        [Tooltip("Cursor lock state if the Handler will be on the top of the Stack")]
         public CursorLockMode CursorLockMode = CursorLockMode.Confined;
 
         // To avoid double init.
@@ -28,18 +30,23 @@ namespace Salday.GameFramework.InputSystem
         #region Keys settings
         [Header("Keys Settings")]
         // If true it InputManager will work only with this handler's keys f it is on the top of stack
+        [Tooltip("If true it InputManager will work only with this handler's keys f it is on the top of stack")]
         public bool HardBlockKeys = false;
 
         // Should InputManager stop on this handler if it contains called key?
+        [Tooltip("Should InputManager stop on this handler if it contains called key?")]
         public bool BlockKeys = true;        
 
         // Lists are used to fill default Handler values tight from Unity Editor
+        [Tooltip("GetKeyDown")]
         [SerializeField]
-        List<InputListener> JustPressedFromEditor = new List<InputListener>();
+        List<InputListener> JustPressedTemplate = new List<InputListener>();
+        [Tooltip("GetKey")]
         [SerializeField]
-        List<InputListener> PressedFromEditor = new List<InputListener>();
+        List<InputListener> PressedTemplate = new List<InputListener>();
+        [Tooltip("GetKeyUp")]
         [SerializeField]
-        List<InputListener> JustReleasedFromEditor = new List<InputListener>();
+        List<InputListener> JustReleasedTemplate = new List<InputListener>();
         #endregion
 
         #region Axes settings
@@ -95,9 +102,9 @@ namespace Salday.GameFramework.InputSystem
             }
             else
             {
-                JustPressedSource = JustPressedFromEditor;
-                PressedSource = PressedFromEditor;
-                JustReleasedSource = JustReleasedFromEditor;
+                JustPressedSource = JustPressedTemplate;
+                PressedSource = PressedTemplate;
+                JustReleasedSource = JustReleasedTemplate;
             }
 
             foreach (var l in JustPressedSource)
