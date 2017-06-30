@@ -338,15 +338,16 @@ namespace Salday.GameFramework.InputSystem
         /// <param name="handler">Handler to be removed</param>
         public void RemoveInputHandlerFromStack(InputHandler handler)
         {
-            foreach (var h in InputHandlersStack)
-            {
-                if(h == handler && InputHandlersStack.Count != 0)
-                {
-                    InputHandlersStack.Pop();
-                    UpdateStack();
-                    break;
-                }
-            } 
+            Stack<InputHandler> temp = new Stack<InputHandler>();
+            InputHandler x;
+
+            while ((x = InputHandlersStack.Pop()) != handler)
+                temp.Push(x);
+            InputHandler found = x;
+            while (temp.Count > 0)
+                InputHandlersStack.Push(temp.Pop());
+
+            UpdateStack();
         }
 
         /// <summary>
@@ -355,15 +356,16 @@ namespace Salday.GameFramework.InputSystem
         /// <param name="handler">Name of the handler to be removed</param>
         public void RemoveInputHandlerFromStack(string handler)
         {
-            foreach (var h in InputHandlersStack)
-            {
-                if (h.Name == handler && InputHandlersStack.Count != 0)
-                {
-                    InputHandlersStack.Pop();
-                    UpdateStack();
-                    break;
-                }
-            }
+            Stack<InputHandler> temp = new Stack<InputHandler>();
+            InputHandler x;
+
+            while ((x = InputHandlersStack.Pop()).Name != handler)
+                temp.Push(x);
+            InputHandler found = x;
+            while (temp.Count > 0)
+                InputHandlersStack.Push(temp.Pop());
+
+            UpdateStack();
         }
 
         /// <summary>
