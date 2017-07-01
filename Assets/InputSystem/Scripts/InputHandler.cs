@@ -78,6 +78,13 @@ namespace Salday.GameFramework.InputSystem
             InputManager.instance.InitNewInputHandler(this);
         }
 
+        // Because each scene has unique InputManager and we have to init 
+        // InputHandler each time
+        void OnLevelWasLoaded(int level)
+        {
+            InputManager.instance.InitNewInputHandler(this);
+        }
+
         /// <summary>
         /// Fills dictionaries with InputListeners from the saving file.
         /// If file doesn't exist - with default data filled from the Editor.
@@ -131,7 +138,7 @@ namespace Salday.GameFramework.InputSystem
                 if (!AllListeners.ContainsKey(l.Name)) AllListeners.Add(l.Name, l);
             }
 
-            inited = false;
+            inited = true;
 
             if (savedHandler == null) SaveHandler();
 

@@ -262,9 +262,8 @@ namespace Salday.GameFramework.InputSystem
         {
             if (!AllInptuHandlers.ContainsKey(handler.Name))
             {
-                var inited = handler.Init();
-                if(inited)
-                    AllInptuHandlers.Add(handler.Name, handler);
+                handler.Init();
+                AllInptuHandlers.Add(handler.Name, handler);
             }
         }
 
@@ -343,7 +342,6 @@ namespace Salday.GameFramework.InputSystem
 
             while ((x = InputHandlersStack.Pop()) != handler)
                 temp.Push(x);
-            InputHandler found = x;
             while (temp.Count > 0)
                 InputHandlersStack.Push(temp.Pop());
 
@@ -361,7 +359,6 @@ namespace Salday.GameFramework.InputSystem
 
             while ((x = InputHandlersStack.Pop()).Name != handler)
                 temp.Push(x);
-            InputHandler found = x;
             while (temp.Count > 0)
                 InputHandlersStack.Push(temp.Pop());
 
@@ -383,7 +380,7 @@ namespace Salday.GameFramework.InputSystem
             foreach(var h in AllInptuHandlers.Values)
             {
                 var l = h.GetListener(listenerName);
-                if(listenerName == l.Name)
+                if(l != null && listenerName == l.Name)
                 {
                     Pos = l.Positive;
                     Alt = l.Alternative;
@@ -463,7 +460,7 @@ namespace Salday.GameFramework.InputSystem
             foreach (var h in AllInptuHandlers.Values)
             {
                 var l = h.GetListener(listenerName);
-                if (listenerName == l.Name)
+                if (l != null && listenerName == l.Name)
                 {
                     Pos = l.Positive;
                     Alt = l.Alternative;
@@ -543,7 +540,7 @@ namespace Salday.GameFramework.InputSystem
             foreach (var h in AllInptuHandlers.Values)
             {
                 var l = h.GetListener(listenerName);
-                if (listenerName == l.Name)
+                if (l != null && listenerName == l.Name)
                 {
                     Pos = l.Positive;
                     Alt = l.Alternative;
