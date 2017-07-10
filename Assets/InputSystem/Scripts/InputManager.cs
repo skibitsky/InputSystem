@@ -27,6 +27,8 @@ namespace Salday.GameFramework.InputSystem
         // Current Cursor lock state/mode
         CursorLockMode CurrentCursorLockMode = CursorLockMode.None;
 
+        StackProtector StackProtector;
+
         // Singleton stuff
         void Awake()
         {
@@ -37,9 +39,45 @@ namespace Salday.GameFramework.InputSystem
             else Destroy(this);
         }
 
+        // If there is an old Stack in StackProtector, use it.
         void Start()
         {
+            var stackProtector = FindObjectOfType<StackProtector>();
+
+            if (stackProtector != null)
+            {
+                StackProtector = stackProtector;
+                var tempStack = new Stack<InputHandler>();
+
+                if(StackProtector.ProtectedStack.Count > 0)
+                {
+                    foreach (var item in StackProtector.ProtectedStack)
+                        if (item != null)
+                            tempStack.Push(item);
+
+                    StackProtector.ProtectedStack.Clear();
+
+                    while (tempStack.Count > 0)
+                        StackProtector.ProtectedStack.Push(tempStack.Pop());
+
+                    InputHandlersStack = StackProtector.ProtectedStack;
+                }
+            }
+            else
+                StackProtector = new GameObject("Input Stack Protector (temp)")
+                    .AddComponent<StackProtector>();
+            
             UpdateStack();
+        }
+
+        // In case InputManager was disabled or deleted
+        // We have to protect the Stack!
+        private void OnDisable()
+        {
+            if(InputHandlersStack.Count != 0)
+            {
+                StackProtector.ProtectedStack = InputHandlersStack;
+            } 
         }
 
         // Loops through all InputHandlers in the stack (frotm the top to bottom) 
@@ -222,7 +260,7 @@ namespace Salday.GameFramework.InputSystem
         }
 
         /// <summary>
-        /// Updates a list of all used keysand axes.
+        /// Updates a list of all used keys and axes.
         /// Sets up Cursor.lockState.
         /// </summary>
         public void UpdateStack()
@@ -242,7 +280,7 @@ namespace Salday.GameFramework.InputSystem
                 // Getting axes
                 if(continueAddingAxes)
                 {
-                    foreach(var axis in ih.Axes)
+                    foreach (var axis in ih.Axes)
                         AxesToListen.Add(axis.Name, axis);
 
                     if (ih.HardBlockAxes)
@@ -338,10 +376,13 @@ namespace Salday.GameFramework.InputSystem
         public void RemoveInputHandlerFromStack(InputHandler handler)
         {
             Stack<InputHandler> temp = new Stack<InputHandler>();
-            InputHandler x;
 
-            while ((x = InputHandlersStack.Pop()) != handler)
-                temp.Push(x);
+            foreach (var item in InputHandlersStack)
+                if (item != handler)
+                    temp.Push(item);
+
+            InputHandlersStack.Clear();
+
             while (temp.Count > 0)
                 InputHandlersStack.Push(temp.Pop());
 
@@ -355,10 +396,13 @@ namespace Salday.GameFramework.InputSystem
         public void RemoveInputHandlerFromStack(string handler)
         {
             Stack<InputHandler> temp = new Stack<InputHandler>();
-            InputHandler x;
 
-            while ((x = InputHandlersStack.Pop()).Name != handler)
-                temp.Push(x);
+            foreach (var item in InputHandlersStack)
+                if (item.Name != handler)
+                    temp.Push(item);
+
+            InputHandlersStack.Clear();
+
             while (temp.Count > 0)
                 InputHandlersStack.Push(temp.Pop());
 
@@ -681,6 +725,15 @@ namespace Salday.GameFramework.InputSystem
                 handler.ChangeKey(listenerName, oldKey, newKey);
                 UpdateStack();
             }
+        }
+
+        [ContextMenu("Debug Stack")]
+        private void DebugStack()
+        {
+            string txt = string.Empty;
+            foreach (var item in InputHandlersStack)
+                txt += string.Format("{0} ({1}) \n", item.Name, item.name);
+            Debug.Log(txt);
         }
 
     }
