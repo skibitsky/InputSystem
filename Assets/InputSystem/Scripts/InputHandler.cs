@@ -2,7 +2,7 @@
 using UnityEngine;
 using System;
 using System.Linq;
-using System.Xml.Serialization;
+using UnityEngine.SceneManagement;
 
 namespace Salday.GameFramework.InputSystem
 {
@@ -35,7 +35,7 @@ namespace Salday.GameFramework.InputSystem
 
         // Should InputManager stop on this handler if it contains called key?
         [Tooltip("Should InputManager stop on this handler if it contains called key?")]
-        public bool BlockKeys = true;        
+        public bool BlockKeys = true;
 
         // Lists are used to fill default Handler values tight from Unity Editor
         [Tooltip("GetKeyDown")]
@@ -71,18 +71,25 @@ namespace Salday.GameFramework.InputSystem
         // All Listeners from all dictionaries
         Dictionary<string, InputListener> AllListeners = new Dictionary<string, InputListener>();
 
+
         // Askes InputManager to init this handler 
         // in case GameObject was created after InputManager Awake.
-        void OnEnable()
+        private void OnEnable()
+        {
+            InputManager.instance.InitNewInputHandler(this);
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        // Because each scene has unique InputManager and we have to init
+        // InputHandler each time
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             InputManager.instance.InitNewInputHandler(this);
         }
 
-        // Because each scene has unique InputManager and we have to init 
-        // InputHandler each time
-        void OnLevelWasLoaded(int level)
+        private void OnDisable()
         {
-            InputManager.instance.InitNewInputHandler(this);
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
         /// <summary>
@@ -92,7 +99,7 @@ namespace Salday.GameFramework.InputSystem
         /// </summary>
         public bool Init()
         {
-            if (inited) return false ;
+            if (inited) return false;
 
             List<InputListener> JustPressedSource;
             List<InputListener> PressedSource;
@@ -100,7 +107,7 @@ namespace Salday.GameFramework.InputSystem
 
             var savedHandler = InputSaver.ReadHandler(this.Name);
 
-            if(savedHandler != null)
+            if (savedHandler != null)
             {
                 JustPressedSource = savedHandler.JustPressed;
                 PressedSource = savedHandler.Pressed;
