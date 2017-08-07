@@ -49,7 +49,7 @@ namespace Salday.GameFramework.InputSystem
                 StackProtector = stackProtector;
                 var tempStack = new Stack<InputHandler>();
 
-                if(StackProtector.ProtectedStack.Count > 0)
+                if (StackProtector.ProtectedStack.Count > 0)
                 {
                     foreach (var item in StackProtector.ProtectedStack)
                         if (item != null)
@@ -66,7 +66,7 @@ namespace Salday.GameFramework.InputSystem
             else
                 StackProtector = new GameObject("Input Stack Protector (temp)")
                     .AddComponent<StackProtector>();
-            
+
             UpdateStack();
         }
 
@@ -74,10 +74,10 @@ namespace Salday.GameFramework.InputSystem
         // We have to protect the Stack!
         private void OnDisable()
         {
-            if(InputHandlersStack.Count != 0)
+            if (InputHandlersStack.Count != 0)
             {
                 StackProtector.ProtectedStack = InputHandlersStack;
-            } 
+            }
         }
 
         // Loops through all InputHandlers in the stack (frotm the top to bottom) 
@@ -100,21 +100,7 @@ namespace Salday.GameFramework.InputSystem
                         if (ih.JustPressed.TryGetValue(key, out il))
                         {
                             // Invokes all listener's actions
-                            if (il.Actions != null)
-                            {
-                                // If it must be invoked only once per frame
-                                if (ih.InvokeOncePerFrame)
-                                {
-                                    // Let's check if it hasn't been already invoked
-                                    if (!il.Invoked)
-                                    {
-                                        il.Actions.Invoke();
-                                        il.Invoked = true;
-                                    }
-                                }
-                                else
-                                    il.Actions.Invoke();
-                            }
+                            InvokeListener(il, ih);
 
                         }
                     }
@@ -127,22 +113,8 @@ namespace Salday.GameFramework.InputSystem
                             // Checking if listener has pressed key
                             if (handler.JustPressed.TryGetValue(key, out il))
                             {
-                                // Invokes all listener's actions
-                                if (il.Actions != null)
-                                {
-                                    // If it must be invoked only once per frame
-                                    if (handler.InvokeOncePerFrame)
-                                    {
-                                        // Let's check if it hasn't been already invoked
-                                        if (!il.Invoked)
-                                        {
-                                            il.Actions.Invoke();
-                                            il.Invoked = true;
-                                        }
-                                    }
-                                    else
-                                        il.Actions.Invoke();
-                                }
+                                InvokeListener(il, handler);
+
                                 // If it has Block we won't go to the other handlers with this key
                                 if (handler.BlockKeys) break;
                             }
@@ -158,19 +130,7 @@ namespace Salday.GameFramework.InputSystem
                     {
                         if (ih.Pressed.TryGetValue(key, out il))
                         {
-                            if (il.Actions != null)
-                            {
-                                if (ih.InvokeOncePerFrame)
-                                {
-                                    if (!il.Invoked)
-                                    {
-                                        il.Actions.Invoke();
-                                        il.Invoked = true;
-                                    }
-                                }
-                                else
-                                    il.Actions.Invoke();
-                            }
+                            InvokeListener(il, ih);
                         }
                     }
                     else
@@ -179,19 +139,7 @@ namespace Salday.GameFramework.InputSystem
                         {
                             if (handler.Pressed.TryGetValue(key, out il))
                             {
-                                if (il.Actions != null)
-                                {
-                                    if (handler.InvokeOncePerFrame)
-                                    {
-                                        if (!il.Invoked)
-                                        {
-                                            il.Actions.Invoke();
-                                            il.Invoked = true;
-                                        }
-                                    }
-                                    else
-                                        il.Actions.Invoke();
-                                }
+                                InvokeListener(il, handler);
                                 if (handler.BlockKeys) break;
                             }
                         }
@@ -206,19 +154,7 @@ namespace Salday.GameFramework.InputSystem
                     {
                         if (ih.JustReleased.TryGetValue(key, out il))
                         {
-                            if (il.Actions != null)
-                            {
-                                if (ih.InvokeOncePerFrame)
-                                {
-                                    if (!il.Invoked)
-                                    {
-                                        il.Actions.Invoke();
-                                        il.Invoked = true;
-                                    }
-                                }
-                                else
-                                    il.Actions.Invoke();
-                            }
+                            InvokeListener(il, ih);
                         }
                     }
                     else
@@ -227,19 +163,7 @@ namespace Salday.GameFramework.InputSystem
                         {
                             if (handler.JustReleased.TryGetValue(key, out il))
                             {
-                                if (il.Actions != null)
-                                {
-                                    if (handler.InvokeOncePerFrame)
-                                    {
-                                        if (!il.Invoked)
-                                        {
-                                            il.Actions.Invoke();
-                                            il.Invoked = true;
-                                        }
-                                    }
-                                    else
-                                        il.Actions.Invoke();
-                                }
+                                InvokeListener(il, handler);
                                 if (handler.BlockKeys) break;
                             }
                         }
@@ -251,12 +175,35 @@ namespace Salday.GameFramework.InputSystem
 
         }
 
+        /// <summary>
+        /// Invokes all listener's actions
+        /// </summary>
+        private void InvokeListener(InputListener il, InputHandler handler)
+        {
+            if (il.Actions != null)
+            {
+                // If it must be invoked only once per frame
+                if (handler.InvokeOncePerFrame)
+                {
+                    // Let's check if it hasn't been already invoked
+                    if (!il.Invoked)
+                    {
+                        il.Actions.Invoke();
+                        il.Invoked = true;
+                    }
+                }
+                else
+                    il.Actions.Invoke();
+            }
+        }
+
         void FixedUpdate()
         {
             // We assign cursor lock state so many times because it can fuck up
             // in different situation depending on IS usage in your project 
             // (for example when loading new scene with DontSestroyOnLoad handler etc...)
-            Cursor.lockState = CurrentCursorLockMode;
+            if (Cursor.lockState != CurrentCursorLockMode)
+                Cursor.lockState = CurrentCursorLockMode;
         }
 
         /// <summary>
@@ -265,7 +212,7 @@ namespace Salday.GameFramework.InputSystem
         /// </summary>
         public void UpdateStack()
         {
-            var continueAddingAxes = true; 
+            var continueAddingAxes = true;
 
             KeyCodesToListen.Clear();
             AxesToListen.Clear();
@@ -278,7 +225,7 @@ namespace Salday.GameFramework.InputSystem
                     KeyCodesToListen.Concat(ih.GetAllKeyCodes());
 
                 // Getting axes
-                if(continueAddingAxes)
+                if (continueAddingAxes)
                 {
                     foreach (var axis in ih.Axes)
                         AxesToListen.Add(axis.Name, axis);
@@ -288,7 +235,7 @@ namespace Salday.GameFramework.InputSystem
                 }
             }
 
-            if(InputHandlersStack.Count != 0)
+            if (InputHandlersStack.Count != 0)
                 CurrentCursorLockMode = InputHandlersStack.Peek().CursorLockMode;
         }
 
@@ -362,11 +309,11 @@ namespace Salday.GameFramework.InputSystem
         /// </summary>
         public void RemoveInputHandlerFromStack()
         {
-            if(InputHandlersStack.Count != 0)
+            if (InputHandlersStack.Count != 0)
             {
                 InputHandlersStack.Pop();
                 UpdateStack();
-            }      
+            }
         }
 
         /// <summary>
@@ -421,10 +368,10 @@ namespace Salday.GameFramework.InputSystem
             // no need for foreach and if
             KeyCode Pos = KeyCode.None;
             KeyCode Alt = KeyCode.None;
-            foreach(var h in AllInptuHandlers.Values)
+            foreach (var h in AllInptuHandlers.Values)
             {
                 var l = h.GetListener(listenerName);
-                if(l != null && listenerName == l.Name)
+                if (l != null && listenerName == l.Name)
                 {
                     Pos = l.Positive;
                     Alt = l.Alternative;
