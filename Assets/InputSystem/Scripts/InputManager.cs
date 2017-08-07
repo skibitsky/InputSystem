@@ -197,13 +197,10 @@ namespace Salday.GameFramework.InputSystem
             }
         }
 
-        void FixedUpdate()
+        void SetCursorState()
         {
-            // We assign cursor lock state so many times because it can fuck up
-            // in different situation depending on IS usage in your project 
-            // (for example when loading new scene with DontSestroyOnLoad handler etc...)
-            if (Cursor.lockState != CurrentCursorLockMode)
-                Cursor.lockState = CurrentCursorLockMode;
+            Cursor.lockState = CurrentCursorLockMode;
+            Cursor.visible = (CursorLockMode.Locked != CurrentCursorLockMode);
         }
 
         /// <summary>
@@ -237,6 +234,8 @@ namespace Salday.GameFramework.InputSystem
 
             if (InputHandlersStack.Count != 0)
                 CurrentCursorLockMode = InputHandlersStack.Peek().CursorLockMode;
+
+            SetCursorState();
         }
 
         /// <summary>
