@@ -39,7 +39,7 @@ Axes can be blocked as well.
 ## Demo
 For better understanding, please run demo scene and check out PlayerController and Chat scripts. 
 There is a very primitive player controller which moves the cube left-right. Try to change keys from the menu, they will be updated in xml as well.
-After enabling chat, “Chat” handler, which hard blocks all the keys, will be added to the top of the Stack. (Input Field on the left button do nothing 😊 )
+After enabling chat, “Chat” handler, which hard blocks all the keys, will be added to the top of the Stack. (Input Field on the left bottom do nothing 😊 )
 
 ## Support
 If you have any questions or suggestions, please contact us: support@salday.com

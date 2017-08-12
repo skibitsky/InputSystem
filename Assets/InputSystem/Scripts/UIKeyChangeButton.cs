@@ -2,7 +2,7 @@
 using UnityEngine;
 using System;
 
-namespace Salday.GameFramework.InputSystem
+namespace Salday.InputSystem
 {
     public class UIKeyChangeButton : MonoBehaviour
     {

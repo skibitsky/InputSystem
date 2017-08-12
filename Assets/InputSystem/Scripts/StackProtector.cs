@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Salday.GameFramework.InputSystem
+namespace Salday.InputSystem
 {
     // Needed to protect InputManager's InputHandlersStack if Manager was
     // disabled or deleted. Very usefull if you have InputHandler in the stack

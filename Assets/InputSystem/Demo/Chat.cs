@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Salday.GameFramework.InputSystem;
+using Salday.InputSystem;
 
 public class Chat : MonoBehaviour
 {

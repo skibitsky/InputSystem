@@ -4,7 +4,7 @@ using System.IO;
 using System.Xml.Serialization;
 using UnityEngine;
 
-namespace Salday.GameFramework.InputSystem
+namespace Salday.InputSystem
 {
     public class InputSaver
     {

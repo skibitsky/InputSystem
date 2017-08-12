@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
-namespace Salday.GameFramework.InputSystem
+namespace Salday.InputSystem
 {
     public class InputHandler : MonoBehaviour
     {

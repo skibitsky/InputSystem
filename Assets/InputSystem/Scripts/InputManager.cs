@@ -4,7 +4,7 @@ using System.Linq;
 using System;
 using System.Collections;
 
-namespace Salday.GameFramework.InputSystem
+namespace Salday.InputSystem
 {
     public class InputManager : MonoBehaviour
     {

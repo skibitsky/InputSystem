@@ -1,4 +1,4 @@
-﻿namespace Salday.GameFramework.InputSystem
+﻿namespace Salday.InputSystem
 {
     public enum InputAxisType
     {

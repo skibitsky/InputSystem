@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
 using UnityEngine;
 
-namespace Salday.GameFramework.InputSystem
+namespace Salday.InputSystem
 {
     [System.Serializable]
     public class InputAxis
