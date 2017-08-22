@@ -349,11 +349,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c36fae448085d4482858bd89562a2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Player Movement
-  InvokeOncePerFrame: 1
-  CursorLockMode: 2
-  HardBlockKeys: 0
-  BlockKeys: 1
+  _name: Player Movement
+  _invokeOncePerFrame: 1
+  _cursorLockMode: 2
+  _hardBlockKeys: 0
+  _blockKeys: 1
   JustPressedTemplate: []
   PressedTemplate:
   - Name: Movement Right
@@ -365,8 +365,8 @@ MonoBehaviour:
     Alternative: 276
     Invoked: 0
   JustReleasedTemplate: []
-  HardBlockAxes: 0
-  Axes: []
+  _hardBlockAxes: 0
+  _axes: []
 --- !u!1 &184765626
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,16 +1170,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c36fae448085d4482858bd89562a2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Chat
-  InvokeOncePerFrame: 0
-  CursorLockMode: 2
-  HardBlockKeys: 1
-  BlockKeys: 0
+  _name: Chat
+  _invokeOncePerFrame: 1
+  _cursorLockMode: 2
+  _hardBlockKeys: 1
+  _blockKeys: 0
   JustPressedTemplate: []
   PressedTemplate: []
   JustReleasedTemplate: []
-  HardBlockAxes: 1
-  Axes: []
+  _hardBlockAxes: 0
+  _axes: []
 --- !u!114 &914173089
 MonoBehaviour:
   m_ObjectHideFlags: 0

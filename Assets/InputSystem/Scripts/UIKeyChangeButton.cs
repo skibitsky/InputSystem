@@ -20,7 +20,7 @@ namespace Salday.InputSystem
         [SerializeField]
         PositiveAlternative positiveAlternative;
 
-        InputHandler _handler;
+        IInputHandler _handler;
 
         void Awake()
         {

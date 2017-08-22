@@ -10,3 +10,4 @@ public class Chat : MonoBehaviour
         else InputManager.instance.RemoveInputHandlerFromStack();
     }
 }
+ 

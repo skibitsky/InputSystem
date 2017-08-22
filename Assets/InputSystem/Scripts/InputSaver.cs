@@ -13,7 +13,7 @@ namespace Salday.InputSystem
         /// Saves gived handler to the XML into _Data/Xml/InputSettings.
         /// </summary>
         /// <param name="handler">Handler to be saved</param>
-        public static void WriteHandler(InputHandler handler)
+        public static void WriteHandler(IInputHandler handler)
         {
             if (Application.isEditor)
                 return;

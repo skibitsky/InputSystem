@@ -6,23 +6,45 @@ using UnityEngine.SceneManagement;
 
 namespace Salday.InputSystem
 {
-    public class InputHandler : MonoBehaviour
+    public class InputHandler : MonoBehaviour, IInputHandler
     {
+
+        #region Interface implementation
+
+        public string Name { get { return _name; } }
+        public bool InvokeOncePerFrame { get { return _invokeOncePerFrame; } }
+        public CursorLockMode CursorLockMode { get { return _cursorLockMode; } }
+
+        public bool HardBlockKeys { get { return _hardBlockKeys; } }
+        public bool BlockKeys { get { return _blockKeys; } }
+
+        public bool HardBlockAxes { get { return _hardBlockAxes; } }
+        public List<InputAxis> Axes { get { return _axes; } }
+
+        public Dictionary<KeyCode, InputListener> JustPressed { get { return _justPressed; } }
+        public Dictionary<KeyCode, InputListener> Pressed { get { return _pressed; } }
+        public Dictionary<KeyCode, InputListener> JustReleased { get { return _justReleased; } }
+
+        #endregion
+
         [Header("Main Handler Settings")]
         // Name of input handler represents its purpose and can be shown in settings for example
         // It's also used in AllInputHandlers dic in InptuManager
-        public string Name = "Player Movement";
+        [SerializeField]
+        private string _name = "Player Movement";
 
         // If true - each listener action will be invoked only once per frame.
         // So if both Positive and Alternative keys are pressed at one time, 
         // Action won't be invoked twice.
         [Tooltip("If true - each listener action will be invoked only once per frame")]
-        public bool InvokeOncePerFrame = true;
+        [SerializeField]
+        private bool _invokeOncePerFrame = true;
 
         // InputManager sets up this value to the Cursor.lockState if the handler
         // is on the top of the Stack
         [Tooltip("Cursor lock state if the Handler will be on the top of the Stack")]
-        public CursorLockMode CursorLockMode = CursorLockMode.Confined;
+        [SerializeField]
+        private CursorLockMode _cursorLockMode = CursorLockMode.Confined;
 
         // To avoid double init.
         private bool inited = false;
@@ -31,11 +53,13 @@ namespace Salday.InputSystem
         [Header("Keys Settings")]
         // If true it InputManager will work only with this handler's keys f it is on the top of stack
         [Tooltip("If true it InputManager will work only with this handler's keys f it is on the top of stack")]
-        public bool HardBlockKeys = false;
+        [SerializeField]
+        private bool _hardBlockKeys = false;
 
         // Should InputManager stop on this handler if it contains called key?
         [Tooltip("Should InputManager stop on this handler if it contains called key?")]
-        public bool BlockKeys = true;
+        [SerializeField]
+        private bool _blockKeys = true;
 
         // Lists are used to fill default Handler values tight from Unity Editor
         [Tooltip("GetKeyDown")]
@@ -52,25 +76,25 @@ namespace Salday.InputSystem
         #region Axes settings
         [Header("Axes Settings")]
         // Should InputManager block all axes in handlers which comes after him in the Stack?
-        public bool HardBlockAxes = false;
+        [SerializeField]
+        private bool _hardBlockAxes = false;
 
         // All Handler's axes
         [SerializeField]
-        public List<InputAxis> Axes = new List<InputAxis>();
+        private List<InputAxis> _axes = new List<InputAxis>();
         #endregion
 
         #region Keys Dictionaries
         // JustPressed (Input.GetKeyDown)
-        public Dictionary<KeyCode, InputListener> JustPressed = new Dictionary<KeyCode, InputListener>();
+        private Dictionary<KeyCode, InputListener> _justPressed = new Dictionary<KeyCode, InputListener>();
         // Pressed (Input.GetKey)
-        public Dictionary<KeyCode, InputListener> Pressed = new Dictionary<KeyCode, InputListener>();
+        private Dictionary<KeyCode, InputListener> _pressed = new Dictionary<KeyCode, InputListener>();
         // JustReleased (Input.GetKeyUp)
-        public Dictionary<KeyCode, InputListener> JustReleased = new Dictionary<KeyCode, InputListener>();
+        private Dictionary<KeyCode, InputListener> _justReleased = new Dictionary<KeyCode, InputListener>();
         #endregion
 
         // All Listeners from all dictionaries
         Dictionary<string, InputListener> AllListeners = new Dictionary<string, InputListener>();
-
 
         // Askes InputManager to init this handler 
         // in case GameObject was created after InputManager Awake.
@@ -112,7 +136,7 @@ namespace Salday.InputSystem
                 JustPressedSource = savedHandler.JustPressed;
                 PressedSource = savedHandler.Pressed;
                 JustReleasedSource = savedHandler.JustReleased;
-                Axes = savedHandler.Axes;
+                _axes = savedHandler.Axes;
             }
             else
             {

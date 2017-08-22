@@ -12,7 +12,7 @@ namespace Salday.InputSystem
         public static InputManager instance;
 
         // Stack of all active Input Handlers
-        Stack<InputHandler> InputHandlersStack = new Stack<InputHandler>();
+        Stack<IInputHandler> InputHandlersStack = new Stack<IInputHandler>();
 
         // List of all keys used in active Handlers to loop through
         List<KeyCode> KeyCodesToListen = new List<KeyCode>();
@@ -22,7 +22,7 @@ namespace Salday.InputSystem
         Dictionary<string, InputAxis> AxesToListen = new Dictionary<string, InputAxis>();
 
         // Collection of all inited InptuHandlers. Key = InptuHandler.Name
-        Dictionary<string, InputHandler> AllInptuHandlers = new Dictionary<string, InputHandler>();
+        Dictionary<string, IInputHandler> AllInptuHandlers = new Dictionary<string, IInputHandler>();
 
         // Current Cursor lock state/mode
         CursorLockMode CurrentCursorLockMode = CursorLockMode.None;
@@ -47,7 +47,7 @@ namespace Salday.InputSystem
             if (stackProtector != null)
             {
                 StackProtector = stackProtector;
-                var tempStack = new Stack<InputHandler>();
+                var tempStack = new Stack<IInputHandler>();
 
                 if (StackProtector.ProtectedStack.Count > 0)
                 {
@@ -84,7 +84,7 @@ namespace Salday.InputSystem
         void Update()
         {
             InputListener il;
-            InputHandler ih;
+            IInputHandler ih;
             // Loop through all keys used in handlers from the stack
             foreach (KeyCode key in KeyCodesToListen)
             {
@@ -178,7 +178,7 @@ namespace Salday.InputSystem
         /// <summary>
         /// Invokes all listener's actions
         /// </summary>
-        private void InvokeListener(InputListener il, InputHandler handler)
+        private void InvokeListener(InputListener il, IInputHandler handler)
         {
             if (il.Actions != null)
             {
@@ -242,7 +242,7 @@ namespace Salday.InputSystem
         /// Inits the handler and adds it to the AllInptuHandlers dictionary.
         /// </summary>
         /// <param name="handler">Handler to init</param>
-        public void InitNewInputHandler(InputHandler handler)
+        public void InitNewInputHandler(IInputHandler handler)
         {
             if (!AllInptuHandlers.ContainsKey(handler.Name))
             {
@@ -252,13 +252,13 @@ namespace Salday.InputSystem
         }
 
         /// <summary>
-        /// Returns inited InputHandler by name from AllInputHandlers.
+        /// Returns inited IInputHandler by name from AllInputHandlers.
         /// Note that it can return null if asked handler wasn't inited or doesn't exist
         /// </summary>
-        /// <param name="name">Name of InputHandler</param>
-        public InputHandler GetInputHandler(string name)
+        /// <param name="name">Name of IInputHandler</param>
+        public IInputHandler GetInputHandler(string name)
         {
-            InputHandler h;
+            IInputHandler h;
             AllInptuHandlers.TryGetValue(name, out h);
             return h;
         }
@@ -274,11 +274,11 @@ namespace Salday.InputSystem
         }
 
         /// <summary>
-        /// Adds passed InputHandler to the top of stack
+        /// Adds passed IInputHandler to the top of stack
         /// </summary>
-        /// <param name="ih">InputHandler to be pushed</param>
+        /// <param name="ih">IInputHandler to be pushed</param>
         /// <returns>True if handler was added to the stack</returns>
-        public bool AddInputHandlerToStack(InputHandler ih)
+        public bool AddInputHandlerToStack(IInputHandler ih)
         {
             InputHandlersStack.Push(ih);
             UpdateStack();
@@ -286,13 +286,13 @@ namespace Salday.InputSystem
         }
 
         /// <summary>
-        /// Adds inited InputHandler to the top of stack by name from AllInptuHandlers collection
+        /// Adds inited IInputHandler to the top of stack by name from AllInptuHandlers collection
         /// </summary>
-        /// <param name="name">Name of inited InputHandler</param>
+        /// <param name="name">Name of inited IInputHandler</param>
         /// <returns>True if handler was added to the stack</returns>
         public bool AddInputHandlerToStack(string name)
         {
-            InputHandler h;
+            IInputHandler h;
             AllInptuHandlers.TryGetValue(name, out h);
             if (h != null)
             {
@@ -319,9 +319,9 @@ namespace Salday.InputSystem
         /// Removes passed input handler from the stack
         /// </summary>
         /// <param name="handler">Handler to be removed</param>
-        public void RemoveInputHandlerFromStack(InputHandler handler)
+        public void RemoveInputHandlerFromStack(IInputHandler handler)
         {
-            Stack<InputHandler> temp = new Stack<InputHandler>();
+            Stack<IInputHandler> temp = new Stack<IInputHandler>();
 
             foreach (var item in InputHandlersStack)
                 if (item != handler)
@@ -341,7 +341,7 @@ namespace Salday.InputSystem
         /// <param name="handler">Name of the handler to be removed</param>
         public void RemoveInputHandlerFromStack(string handler)
         {
-            Stack<InputHandler> temp = new Stack<InputHandler>();
+            Stack<IInputHandler> temp = new Stack<IInputHandler>();
 
             foreach (var item in InputHandlersStack)
                 if (item.Name != handler)
@@ -620,7 +620,7 @@ namespace Salday.InputSystem
         /// <param name="listener">Listener to be updated</param>
         /// <param name="positive">True if Positive key. False if Alternative</param>
         /// <param name="UIUpdater">Method to be called after key changed (can be null)</param>
-        public void ChangeKey(InputHandler handler, string listener, bool positive, Action UIUpdater)
+        public void ChangeKey(IInputHandler handler, string listener, bool positive, Action UIUpdater)
         {
             if (handler != null)
             {
@@ -630,7 +630,7 @@ namespace Salday.InputSystem
 
         }
 
-        IEnumerator ListenForKeyToChange(InputHandler handler, string listenerName, bool positive, Action UIUpdater)
+        IEnumerator ListenForKeyToChange(IInputHandler handler, string listenerName, bool positive, Action UIUpdater)
         {
             KeyCode newKey = KeyCode.None;
             KeyCode oldKey;
@@ -678,7 +678,7 @@ namespace Salday.InputSystem
         {
             string txt = string.Empty;
             foreach (var item in InputHandlersStack)
-                txt += string.Format("{0} ({1}) \n", item.Name, item.name);
+                txt += string.Format("{0} ({1}) \n", item.Name, item.Name);
             Debug.Log(txt);
         }
 
