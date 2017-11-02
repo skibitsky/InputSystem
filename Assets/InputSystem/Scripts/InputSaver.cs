@@ -10,7 +10,7 @@ namespace Salday.InputSystem
     {
 
         /// <summary>
-        /// Saves gived handler to the XML into _Data/Xml/InputSettings.
+        /// Saves received handler to the XML into _Data/Xml/InputSettings.
         /// </summary>
         /// <param name="handler">Handler to be saved</param>
         public static void WriteHandler(IInputHandler handler)
@@ -18,7 +18,7 @@ namespace Salday.InputSystem
             if (Application.isEditor)
                 return;
 
-            var folder = @"Xml\InputSettings";
+            const string folder = @"Xml\InputSettings";
 
             var path = Path.Combine(Application.dataPath, folder);
 
@@ -49,10 +49,10 @@ namespace Salday.InputSystem
         /// Returns SavingHandler with all InputListener of asked handler.
         /// Null if handler doesn't have a file
         /// </summary>
-        /// <param name="name">Handlerto be readed</param>
+        /// <param name="name">Handler to be read</param>
         public static SavingHandler ReadHandler(string name)
         {
-            var folder = @"Xml\InputSettings";
+            const string folder = @"Xml\InputSettings";
 
             var path = Path.Combine(Application.dataPath, folder);
 
@@ -89,7 +89,7 @@ namespace Salday.InputSystem
         public List<InputAxis> Axes = new List<InputAxis>();
 
         /// <summary>
-        /// Dont't use it. It's required by XmlSerializer.
+        /// Don't use it. It's required by XmlSerializer.
         /// </summary>
         public SavingHandler() { }
 

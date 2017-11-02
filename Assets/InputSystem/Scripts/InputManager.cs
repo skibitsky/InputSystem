@@ -30,17 +30,15 @@ namespace Salday.InputSystem
         StackProtector StackProtector;
 
         // Singleton stuff
-        void Awake()
+        private void Awake()
         {
-            if (InputManager.instance == null)
-            {
-                InputManager.instance = this;
-            }
+            if (instance == null)
+                instance = this;
             else Destroy(this);
         }
 
         // If there is an old Stack in StackProtector, use it.
-        void Start()
+        private void Start()
         {
             var stackProtector = FindObjectOfType<StackProtector>();
 
@@ -80,15 +78,17 @@ namespace Salday.InputSystem
             }
         }
 
-        // Loops through all InputHandlers in the stack (frotm the top to bottom) 
-        void Update()
+        // Loops through all InputHandlers in the stack (from top to bottom) 
+        private void Update()
         {
-            InputListener il;
-            IInputHandler ih;
+            CheckHandlersDirty();
+
             // Loop through all keys used in handlers from the stack
-            foreach (KeyCode key in KeyCodesToListen)
+            foreach (var key in KeyCodesToListen)
             {
                 // If the key was JustPressed
+                InputListener il;
+                IInputHandler ih;
                 if (Input.GetKeyDown(key))
                 {
                     // Taking top handler
@@ -111,13 +111,11 @@ namespace Salday.InputSystem
                         foreach (var handler in InputHandlersStack)
                         {
                             // Checking if listener has pressed key
-                            if (handler.JustPressed.TryGetValue(key, out il))
-                            {
-                                InvokeListener(il, handler);
+                            if (!handler.JustPressed.TryGetValue(key, out il)) continue;
+                            InvokeListener(il, handler);
 
-                                // If it has Block we won't go to the other handlers with this key
-                                if (handler.BlockKeys) break;
-                            }
+                            // If it has Block we won't go to the other handlers with this key
+                            if (handler.BlockKeys) break;
                         }
                     }
                 }
@@ -137,17 +135,15 @@ namespace Salday.InputSystem
                     {
                         foreach (var handler in InputHandlersStack)
                         {
-                            if (handler.Pressed.TryGetValue(key, out il))
-                            {
-                                InvokeListener(il, handler);
-                                if (handler.BlockKeys) break;
-                            }
+                            if (!handler.Pressed.TryGetValue(key, out il)) continue;
+                            InvokeListener(il, handler);
+                            if (handler.BlockKeys) break;
                         }
                     }
                 }
 
                 // Same here for JustReleased
-                if (Input.GetKeyUp(key))
+                if (!Input.GetKeyUp(key)) continue;
                 {
                     ih = InputHandlersStack.Peek();
                     if (ih.HardBlockKeys)
@@ -161,43 +157,40 @@ namespace Salday.InputSystem
                     {
                         foreach (var handler in InputHandlersStack)
                         {
-                            if (handler.JustReleased.TryGetValue(key, out il))
-                            {
-                                InvokeListener(il, handler);
-                                if (handler.BlockKeys) break;
-                            }
+                            if (!handler.JustReleased.TryGetValue(key, out il)) continue;
+                            InvokeListener(il, handler);
+                            if (handler.BlockKeys) break;
                         }
                     }
                 }
-
             }
+        }
 
-
+        private void CheckHandlersDirty()
+        {
+            if (!InputHandlersStack.Any(inputHandler => inputHandler.isDirty)) return;
+            UpdateStack();
         }
 
         /// <summary>
         /// Invokes all listener's actions
         /// </summary>
-        private void InvokeListener(InputListener il, IInputHandler handler)
+        private static void InvokeListener(InputListener il, IInputHandler handler)
         {
-            if (il.Actions != null)
+            if (il.Actions == null) return;
+            // If it must be invoked only once per frame
+            if (handler.InvokeOncePerFrame)
             {
-                // If it must be invoked only once per frame
-                if (handler.InvokeOncePerFrame)
-                {
-                    // Let's check if it hasn't been already invoked
-                    if (!il.Invoked)
-                    {
-                        il.Actions.Invoke();
-                        il.Invoked = true;
-                    }
-                }
-                else
-                    il.Actions.Invoke();
+                // Let's check if it hasn't been already invoked
+                if (il.Invoked) return;
+                il.Actions.Invoke();
+                il.Invoked = true;
             }
+            else
+                il.Actions.Invoke();
         }
 
-        void SetCursorState()
+        private void SetCursorState()
         {
             Cursor.lockState = CurrentCursorLockMode;
             Cursor.visible = (CursorLockMode.Locked != CurrentCursorLockMode);
@@ -230,6 +223,8 @@ namespace Salday.InputSystem
                     if (ih.HardBlockAxes)
                         continueAddingAxes = false;
                 }
+
+                ih.isDirty = false;
             }
 
             if (InputHandlersStack.Count != 0)
@@ -308,11 +303,9 @@ namespace Salday.InputSystem
         /// </summary>
         public void RemoveInputHandlerFromStack()
         {
-            if (InputHandlersStack.Count != 0)
-            {
-                InputHandlersStack.Pop();
-                UpdateStack();
-            }
+            if (InputHandlersStack.Count == 0) return;
+            InputHandlersStack.Pop();
+            UpdateStack();
         }
 
         /// <summary>
@@ -321,7 +314,7 @@ namespace Salday.InputSystem
         /// <param name="handler">Handler to be removed</param>
         public void RemoveInputHandlerFromStack(IInputHandler handler)
         {
-            Stack<IInputHandler> temp = new Stack<IInputHandler>();
+            var temp = new Stack<IInputHandler>();
 
             foreach (var item in InputHandlersStack)
                 if (item != handler)
@@ -341,7 +334,7 @@ namespace Salday.InputSystem
         /// <param name="handler">Name of the handler to be removed</param>
         public void RemoveInputHandlerFromStack(string handler)
         {
-            Stack<IInputHandler> temp = new Stack<IInputHandler>();
+            var temp = new Stack<IInputHandler>();
 
             foreach (var item in InputHandlersStack)
                 if (item.Name != handler)
@@ -365,8 +358,8 @@ namespace Salday.InputSystem
             // We have to get keys of the listener,
             // that's why it's better to pass listener, 
             // no need for foreach and if
-            KeyCode Pos = KeyCode.None;
-            KeyCode Alt = KeyCode.None;
+            var Pos = KeyCode.None;
+            var Alt = KeyCode.None;
             foreach (var h in AllInptuHandlers.Values)
             {
                 var l = h.GetListener(listenerName);
@@ -378,8 +371,8 @@ namespace Salday.InputSystem
                 }
             }
 
-            bool block = false;
-            if (Input.GetKey(Pos) || Input.GetKey(Alt))
+            var block = false;
+            if (!Input.GetKey(Pos) && !Input.GetKey(Alt)) return false;
             {
                 foreach (var h in InputHandlersStack)
                 {
@@ -391,9 +384,9 @@ namespace Salday.InputSystem
                         }
                         else
                         {
-                            if (l.Positive == Pos || l.Alternative == Alt)
-                                if (h.BlockKeys)
-                                    block = true;
+                            if (l.Positive != Pos && l.Alternative != Alt) continue;
+                            if (h.BlockKeys)
+                                block = true;
                         }
                     }
                     if (h.HardBlockKeys || block)
@@ -410,27 +403,25 @@ namespace Salday.InputSystem
         /// </summary>
         public bool GetPressed(InputListener listener)
         {
-            bool block = false;
-            if (Input.GetKey(listener.Positive) || Input.GetKey(listener.Alternative))
+            var block = false;
+            if (!Input.GetKey(listener.Positive) && !Input.GetKey(listener.Alternative)) return false;
+            foreach (var h in InputHandlersStack)
             {
-                foreach (var h in InputHandlersStack)
+                foreach (var l in h.Pressed.Values)
                 {
-                    foreach (var l in h.Pressed.Values)
+                    if (l.Name == listener.Name)
                     {
-                        if (l.Name == listener.Name)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            if (l.Positive == listener.Positive || l.Alternative == listener.Alternative)
-                                if (h.BlockKeys)
-                                    block = true;
-                        }
+                        return true;
                     }
-                    if (h.HardBlockKeys || block)
-                        return false;
+                    else
+                    {
+                        if (l.Positive != listener.Positive && l.Alternative != listener.Alternative) continue;
+                        if (h.BlockKeys)
+                            block = true;
+                    }
                 }
+                if (h.HardBlockKeys || block)
+                    return false;
             }
             return false;
         }
@@ -445,21 +436,19 @@ namespace Salday.InputSystem
             // We have to get keys of the listener,
             // that's why it's better to pass listener, 
             // no need for foreach and if
-            KeyCode Pos = KeyCode.None;
-            KeyCode Alt = KeyCode.None;
+            var Pos = KeyCode.None;
+            var Alt = KeyCode.None;
             foreach (var h in AllInptuHandlers.Values)
             {
                 var l = h.GetListener(listenerName);
-                if (l != null && listenerName == l.Name)
-                {
-                    Pos = l.Positive;
-                    Alt = l.Alternative;
-                    break;
-                }
+                if (l == null || listenerName != l.Name) continue;
+                Pos = l.Positive;
+                Alt = l.Alternative;
+                break;
             }
 
-            bool block = false;
-            if (Input.GetKeyDown(Pos) || Input.GetKeyDown(Alt))
+            var block = false;
+            if (!Input.GetKeyDown(Pos) && !Input.GetKeyDown(Alt)) return false;
             {
                 foreach (var h in InputHandlersStack)
                 {
@@ -471,9 +460,9 @@ namespace Salday.InputSystem
                         }
                         else
                         {
-                            if (l.Positive == Pos || l.Alternative == Alt)
-                                if (h.BlockKeys)
-                                    block = true;
+                            if (l.Positive != Pos && l.Alternative != Alt) continue;
+                            if (h.BlockKeys)
+                                block = true;
                         }
                     }
                     if (h.HardBlockKeys || block)
@@ -490,27 +479,25 @@ namespace Salday.InputSystem
         /// </summary>
         public bool GetJustPressed(InputListener listener)
         {
-            bool block = false;
-            if (Input.GetKeyDown(listener.Positive) || Input.GetKeyDown(listener.Alternative))
+            var block = false;
+            if (!Input.GetKeyDown(listener.Positive) && !Input.GetKeyDown(listener.Alternative)) return false;
+            foreach (var h in InputHandlersStack)
             {
-                foreach (var h in InputHandlersStack)
+                foreach (var l in h.JustPressed.Values)
                 {
-                    foreach (var l in h.JustPressed.Values)
+                    if (l.Name == listener.Name)
                     {
-                        if (l.Name == listener.Name)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            if (l.Positive == listener.Positive || l.Alternative == listener.Alternative)
-                                if (h.BlockKeys)
-                                    block = true;
-                        }
+                        return true;
                     }
-                    if (h.HardBlockKeys || block)
-                        return false;
+                    else
+                    {
+                        if (l.Positive != listener.Positive && l.Alternative != listener.Alternative) continue;
+                        if (h.BlockKeys)
+                            block = true;
+                    }
                 }
+                if (h.HardBlockKeys || block)
+                    return false;
             }
             return false;
         }
@@ -525,21 +512,19 @@ namespace Salday.InputSystem
             // We have to get keys of the listener,
             // that's why it's better to pass listener, 
             // no need for foreach and if
-            KeyCode Pos = KeyCode.None;
-            KeyCode Alt = KeyCode.None;
+            var Pos = KeyCode.None;
+            var Alt = KeyCode.None;
             foreach (var h in AllInptuHandlers.Values)
             {
                 var l = h.GetListener(listenerName);
-                if (l != null && listenerName == l.Name)
-                {
-                    Pos = l.Positive;
-                    Alt = l.Alternative;
-                    break;
-                }
+                if (l == null || listenerName != l.Name) continue;
+                Pos = l.Positive;
+                Alt = l.Alternative;
+                break;
             }
 
-            bool block = false;
-            if (Input.GetKeyUp(Pos) || Input.GetKeyUp(Alt))
+            var block = false;
+            if (!Input.GetKeyUp(Pos) && !Input.GetKeyUp(Alt)) return false;
             {
                 foreach (var h in InputHandlersStack)
                 {
@@ -570,27 +555,25 @@ namespace Salday.InputSystem
         /// </summary>
         public bool GetJustReleased(InputListener listener)
         {
-            bool block = false;
-            if (Input.GetKeyUp(listener.Positive) || Input.GetKeyUp(listener.Alternative))
+            var block = false;
+            if (!Input.GetKeyUp(listener.Positive) && !Input.GetKeyUp(listener.Alternative)) return false;
+            foreach (var h in InputHandlersStack)
             {
-                foreach (var h in InputHandlersStack)
+                foreach (var l in h.JustReleased.Values)
                 {
-                    foreach (var l in h.JustReleased.Values)
+                    if (l.Name == listener.Name)
                     {
-                        if (l.Name == listener.Name)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            if (l.Positive == listener.Positive || l.Alternative == listener.Alternative)
-                                if (h.BlockKeys)
-                                    block = true;
-                        }
+                        return true;
                     }
-                    if (h.HardBlockKeys || block)
-                        return false;
+                    else
+                    {
+                        if (l.Positive != listener.Positive && l.Alternative != listener.Alternative) continue;
+                        if (h.BlockKeys)
+                            block = true;
+                    }
                 }
+                if (h.HardBlockKeys || block)
+                    return false;
             }
             return false;
         }
@@ -605,12 +588,9 @@ namespace Salday.InputSystem
         public void ChangeKey(string handler, string listener, bool positive, Action UIUpdater)
         {
             var h = GetInputHandler(handler);
-            if (h != null)
-            {
-                var c = ListenForKeyToChange(h, listener, positive, UIUpdater);
-                StartCoroutine(c);
-            }
-
+            if (h == null) return;
+            var c = ListenForKeyToChange(h, listener, positive, UIUpdater);
+            StartCoroutine(c);
         }
 
         /// <summary>
@@ -622,63 +602,61 @@ namespace Salday.InputSystem
         /// <param name="UIUpdater">Method to be called after key changed (can be null)</param>
         public void ChangeKey(IInputHandler handler, string listener, bool positive, Action UIUpdater)
         {
-            if (handler != null)
-            {
-                var c = ListenForKeyToChange(handler, listener, positive, UIUpdater);
-                StartCoroutine(c);
-            }
-
+            if (handler == null) return;
+            var c = ListenForKeyToChange(handler, listener, positive, UIUpdater);
+            StartCoroutine(c);
         }
 
-        IEnumerator ListenForKeyToChange(IInputHandler handler, string listenerName, bool positive, Action UIUpdater)
+        private IEnumerator ListenForKeyToChange(IInputHandler handler, string listenerName, bool positive, Action UIUpdater)
         {
-            KeyCode newKey = KeyCode.None;
-            KeyCode oldKey;
+            var newKey = KeyCode.None;
 
             var listener = handler.GetListener(listenerName);
-            if (listener != null)
+            if (listener == null) yield break;
+            while (newKey == KeyCode.None)
             {
-                while (newKey == KeyCode.None)
+                foreach (KeyCode keyCode in Enum.GetValues(typeof(KeyCode)))
                 {
-                    foreach (KeyCode keyCode in Enum.GetValues(typeof(KeyCode)))
-                    {
-                        if (Input.GetKey(keyCode))
-                        {
-                            newKey = keyCode;
-                            break;
-                        }
-                    }
-
-                    yield return new WaitForEndOfFrame();
+                    if (!Input.GetKey(keyCode)) continue;
+                    newKey = keyCode;
+                    break;
                 }
 
-                if (positive)
-                {
-                    oldKey = listener.Positive;
-                    listener.Positive = newKey;
-                }
-                else
-                {
-                    oldKey = listener.Alternative;
-                    listener.Alternative = newKey;
-                }
-
-                if (UIUpdater != null)
-                {
-                    UIUpdater.Invoke();
-                }
-
-                handler.ChangeKey(listenerName, oldKey, newKey);
-                UpdateStack();
+                yield return new WaitForEndOfFrame();
             }
+
+            KeyCode oldKey;
+            if (positive)
+            {
+                oldKey = listener.Positive;
+                listener.Positive = newKey;
+            }
+            else
+            {
+                oldKey = listener.Alternative;
+                listener.Alternative = newKey;
+            }
+
+            if (UIUpdater != null)
+            {
+                UIUpdater.Invoke();
+            }
+
+            handler.ChangeKey(listenerName, oldKey, newKey);
+            UpdateStack();
         }
 
         [ContextMenu("Debug Stack")]
         private void DebugStack()
         {
-            string txt = string.Empty;
-            foreach (var item in InputHandlersStack)
-                txt += string.Format("{0} ({1}) \n", item.Name, item.Name);
+            var txt = InputHandlersStack.Aggregate(string.Empty, (current, item) => current + string.Format("{0} ({1}) \n", item.Name, item.Name));
+            Debug.Log(txt);
+        }
+
+        [ContextMenu("Debug KeyCodes")]
+        private void DebugKeyCodes()
+        {
+            var txt = KeyCodesToListen.Aggregate(string.Empty, (current, kc) => current + string.Format("{0} \n", kc));
             Debug.Log(txt);
         }
 

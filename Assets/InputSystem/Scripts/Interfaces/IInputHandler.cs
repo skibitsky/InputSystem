@@ -184,5 +184,8 @@ namespace Salday.InputSystem
         /// <param name="key">KeyCode of the key the method was subscribed to</param>
         /// <param name="method">Method to be removed</param>
         void RemoveJustReleasedAction(KeyCode key, Action method);
+
+        // Is something has change inside of InputHandler, Manager should update his data
+        bool isDirty { get; set; }
     }
 }
