@@ -22,7 +22,7 @@ namespace Salday.InputSystem
         Dictionary<string, InputAxis> AxesToListen = new Dictionary<string, InputAxis>();
 
         // Collection of all inited InptuHandlers. Key = InptuHandler.Name
-        Dictionary<string, IInputHandler> AllInptuHandlers = new Dictionary<string, IInputHandler>();
+        Dictionary<string, IInputHandler> AllInputHandlers = new Dictionary<string, IInputHandler>();
 
         // Current Cursor lock state/mode
         CursorLockMode CurrentCursorLockMode = CursorLockMode.None;
@@ -166,6 +166,11 @@ namespace Salday.InputSystem
             }
         }
 
+        private void FixedUpdate()
+        {
+            SetCursorState();
+        }
+
         private void CheckHandlersDirty()
         {
             if (!InputHandlersStack.Any(inputHandler => inputHandler.isDirty)) return;
@@ -194,6 +199,19 @@ namespace Salday.InputSystem
         {
             Cursor.lockState = CurrentCursorLockMode;
             Cursor.visible = (CursorLockMode.Locked != CurrentCursorLockMode);
+        }
+
+        /// <summary>
+        /// Deletes InputHandler form AllInputHandlers and Stack
+        /// </summary>
+        /// <param name="handler">Handler to be deleted</param>
+        public void DeleteHandler(IInputHandler handler)
+        {
+            if (AllInputHandlers.ContainsKey(handler.Name))
+                AllInputHandlers.Remove(handler.Name);
+
+            if (InputHandlersStack.Contains(handler))
+                RemoveInputHandlerFromStack(handler);
         }
 
         /// <summary>
@@ -229,20 +247,18 @@ namespace Salday.InputSystem
 
             if (InputHandlersStack.Count != 0)
                 CurrentCursorLockMode = InputHandlersStack.Peek().CursorLockMode;
-
-            SetCursorState();
         }
 
         /// <summary>
-        /// Inits the handler and adds it to the AllInptuHandlers dictionary.
+        /// Inits the handler and adds it to the AllInputHandlers dictionary.
         /// </summary>
         /// <param name="handler">Handler to init</param>
         public void InitNewInputHandler(IInputHandler handler)
         {
-            if (!AllInptuHandlers.ContainsKey(handler.Name))
+            if (!AllInputHandlers.ContainsKey(handler.Name))
             {
                 handler.Init();
-                AllInptuHandlers.Add(handler.Name, handler);
+                AllInputHandlers.Add(handler.Name, handler);
             }
         }
 
@@ -254,7 +270,7 @@ namespace Salday.InputSystem
         public IInputHandler GetInputHandler(string name)
         {
             IInputHandler h;
-            AllInptuHandlers.TryGetValue(name, out h);
+            AllInputHandlers.TryGetValue(name, out h);
             return h;
         }
 
@@ -281,17 +297,17 @@ namespace Salday.InputSystem
         }
 
         /// <summary>
-        /// Adds inited IInputHandler to the top of stack by name from AllInptuHandlers collection
+        /// Adds inited IInputHandler to the top of stack by name from AllInputHandlers collection
         /// </summary>
         /// <param name="name">Name of inited IInputHandler</param>
         /// <returns>True if handler was added to the stack</returns>
         public bool AddInputHandlerToStack(string name)
         {
             IInputHandler h;
-            AllInptuHandlers.TryGetValue(name, out h);
+            AllInputHandlers.TryGetValue(name, out h);
             if (h != null)
             {
-                InputHandlersStack.Push(AllInptuHandlers[name]);
+                InputHandlersStack.Push(AllInputHandlers[name]);
                 UpdateStack();
                 return true;
             }
@@ -360,7 +376,7 @@ namespace Salday.InputSystem
             // no need for foreach and if
             var Pos = KeyCode.None;
             var Alt = KeyCode.None;
-            foreach (var h in AllInptuHandlers.Values)
+            foreach (var h in AllInputHandlers.Values)
             {
                 var l = h.GetListener(listenerName);
                 if (l != null && listenerName == l.Name)
@@ -438,7 +454,7 @@ namespace Salday.InputSystem
             // no need for foreach and if
             var Pos = KeyCode.None;
             var Alt = KeyCode.None;
-            foreach (var h in AllInptuHandlers.Values)
+            foreach (var h in AllInputHandlers.Values)
             {
                 var l = h.GetListener(listenerName);
                 if (l == null || listenerName != l.Name) continue;
@@ -514,7 +530,7 @@ namespace Salday.InputSystem
             // no need for foreach and if
             var Pos = KeyCode.None;
             var Alt = KeyCode.None;
-            foreach (var h in AllInptuHandlers.Values)
+            foreach (var h in AllInputHandlers.Values)
             {
                 var l = h.GetListener(listenerName);
                 if (l == null || listenerName != l.Name) continue;

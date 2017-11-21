@@ -42,6 +42,10 @@ namespace Salday.InputSystem
         [SerializeField]
         private bool _invokeOncePerFrame = true;
 
+        [Tooltip("Should handler be added to the Stack after level was loaded?")]
+        [SerializeField]
+        private bool _addToStackOnLoad = false;
+
         // InputManager sets up this value to the Cursor.lockState if the handler
         // is on the top of the Stack
         [Tooltip("Cursor lock state if the Handler will be on the top of the Stack")]
@@ -49,12 +53,12 @@ namespace Salday.InputSystem
         private CursorLockMode _cursorLockMode = CursorLockMode.Confined;
 
         // To avoid double init.
-        private bool inited = false;
+        private bool _inited = false;
 
         #region Keys settings
         [Header("Keys Settings")]
         // If true it InputManager will work only with this handler's keys f it is on the top of stack
-        [Tooltip("If true it InputManager will work only with this handler's keys f it is on the top of stack")]
+        [Tooltip("If true InputManager will work only with this handler's keys f it is on the top of stack")]
         [SerializeField]
         private bool _hardBlockKeys = false;
 
@@ -103,7 +107,7 @@ namespace Salday.InputSystem
             isDirty = false;
         }
 
-        // Askes InputManager to init this handler 
+        // Asks InputManager to init this handler 
         // in case GameObject was created after InputManager Awake.
         private void OnEnable()
         {
@@ -116,6 +120,8 @@ namespace Salday.InputSystem
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             InputManager.instance.InitNewInputHandler(this);
+            if (_addToStackOnLoad)
+                InputManager.instance.AddInputHandlerToStack(this);
         }
 
         private void OnDisable()
@@ -130,7 +136,7 @@ namespace Salday.InputSystem
         /// </summary>
         public bool Init()
         {
-            if (inited) return false;
+            if (_inited) return false;
 
             List<InputListener> JustPressedSource;
             List<InputListener> PressedSource;
@@ -176,7 +182,7 @@ namespace Salday.InputSystem
                 if (!AllListeners.ContainsKey(l.Name)) AllListeners.Add(l.Name, l);
             }
 
-            inited = true;
+            _inited = true;
 
             if (savedHandler == null) SaveHandler();
 
@@ -185,7 +191,7 @@ namespace Salday.InputSystem
 
         private void LateUpdate()
         {
-            // If InvokeOncePerFrame, at the end of frame we have to set InputListener.Ivoked to false
+            // If InvokeOncePerFrame, at the end of frame we have to set InputListener.Invoked to false
             // That it could be invoked in the next frame
             if (!InvokeOncePerFrame) return;
             foreach (var il in JustPressed)
@@ -214,7 +220,7 @@ namespace Salday.InputSystem
         }
 
         /// <summary>
-        /// Returns InputLIstener from the handler by name. 
+        /// Returns InputListener from the handler by name. 
         /// It can return null if there is no listener with the name.
         /// </summary>
         /// <param name="name">Name of InputListener</param>
@@ -265,6 +271,11 @@ namespace Salday.InputSystem
         public void SaveHandler()
         {
             InputSaver.WriteHandler(this);
+        }
+
+        private void OnDestroy()
+        {
+            InputManager.instance.DeleteHandler(this);
         }
 
         #region JustPressed
