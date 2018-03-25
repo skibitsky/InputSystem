@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="InputSystem" t="Include">
+          <e p="Demo" t="Include">
+            <e p="Chat.cs" t="Include" />
+            <e p="PlayerController.cs" t="Include" />
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="InputAxis.cs" t="Include" />
+            <e p="InputAxisType.cs" t="Include" />
+            <e p="InputHandler.cs" t="Include" />
+            <e p="InputListener.cs" t="Include" />
+            <e p="InputManager.cs" t="Include" />
+            <e p="InputSaver.cs" t="Include" />
+            <e p="Interfaces" t="Include">
+              <e p="IInputHandler.cs" t="Include" />
+            </e>
+            <e p="StackProtector.cs" t="Include" />
+            <e p="UIKeyChangeButton.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="InputSystem.sln" t="IncludeFlat" />
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2017.3/resharper-host/local/Transient/ReSharperHost/v11/SolutionCaches/_InputSystem.1333812639.00" t="ExcludeRecursive" />
+  </component>
+</project>

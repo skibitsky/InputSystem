@@ -277,7 +277,81 @@ namespace Salday.InputSystem
         {
             InputManager.instance.DeleteHandler(this);
         }
+        
 
+        /// <summary>
+        /// Adds action to the InputListiner of specific name in 
+        /// </summary>
+        /// <param name="name">Name of InputListener</param>
+        /// <param name="method">Method to be added to the listener</param>
+        private void AddAction(string name, Action method, IDictionary<KeyCode, InputListener> dic)
+        {
+            foreach (var inputListener in dic.Values)
+            {
+                if(inputListener.Name != name) continue;
+                inputListener.Actions += method;
+                isDirty = true;
+                break;
+            }
+        }
+        
+        /// <summary>
+        /// Adds action to the InputListiner of specific name in 
+        /// </summary>
+        /// <param name="name">Name of InputListener</param>
+        /// <param name="method">Method to be added to the listener</param>
+        private void AddAction(KeyCode key, Action method, IDictionary<KeyCode, InputListener> dic)
+        {
+            if (dic.ContainsKey(key))
+                dic[key].Actions += method;
+            else
+            {
+                var il = new InputListener(key);
+                il.Actions += method;
+                dic.Add(key, il);
+                isDirty = true;
+            }
+        }
+        
+        /// <summary>
+        /// Removes action from InputListener based on the name of listener
+        /// </summary>
+        /// <param name="name">Name of the listener</param>
+        /// <param name="method">Method to be removed</param>
+        public void RemoveAction(string name, Action method, IDictionary<KeyCode, InputListener> dic)
+        {
+            foreach (var l in dic.Values)
+            {
+                if (l.Name != name) continue;
+                l.Actions -= method;
+                if (l.Actions.GetInvocationList().Length != 0) continue;
+
+                if (dic.ContainsKey(l.Positive))
+                    dic.Remove(l.Positive);
+                if (dic.ContainsKey(l.Alternative))
+                    dic.Remove(l.Alternative);
+                isDirty = true;
+            }
+        }
+        
+        /// <summary>
+        /// Removes action from InputListener based on the KeyCode.
+        /// </summary>
+        /// <param name="key">KeyCode of the key the method was subscribed to</param>
+        /// <param name="method">Method to be removed</param>
+        public void RemoveAction(KeyCode key, Action method, IDictionary<KeyCode, InputListener> dic)
+        {
+            if (!dic.ContainsKey(key)) return;
+            dic[key].Actions -= method;
+            if (dic[key].Actions.GetInvocationList().Length != 0) return;
+            dic.Remove(key);
+            isDirty = true;
+        }
+
+        
+        // -------------------------------------------------
+        
+        
         #region JustPressed
         /// <summary>
         /// Adds passed action to the InputListiner of specific name in 
@@ -287,13 +361,7 @@ namespace Salday.InputSystem
         /// <param name="method">Method to be added to the listener</param>
         public void AddJustPressedAction(string name, Action method)
         {  
-            foreach (var l in JustPressed)
-            {
-                if (l.Value.Name != name) continue;
-                l.Value.Actions += method;
-                isDirty = true;
-                break;
-            }
+            AddAction(name, method, JustPressed);
         }
 
         /// <summary>
@@ -304,15 +372,7 @@ namespace Salday.InputSystem
         /// <param name="method">Method to be subscribed</param>
         public void AddJustPressedAction(KeyCode key, Action method)
         {
-            if (JustPressed.ContainsKey(key))
-                JustPressed[key].Actions += method;
-            else
-            {
-                var il = new InputListener(key);
-                il.Actions += method;
-                JustPressed.Add(key, il);
-                isDirty = true;
-            }  
+            AddAction(key, method, JustPressed); 
         }
 
         /// <summary>
@@ -322,18 +382,7 @@ namespace Salday.InputSystem
         /// <param name="method">Method to be removed</param>
         public void RemoveJustPressedAction(string name, Action method)
         {
-            foreach (var l in JustPressed.Values)
-            {
-                if (l.Name != name) continue;
-                l.Actions -= method;
-                if (l.Actions.GetInvocationList().Length != 0) continue;
-
-                if (JustPressed.ContainsKey(l.Positive))
-                    JustPressed.Remove(l.Positive);
-                if (JustPressed.ContainsKey(l.Alternative))
-                    JustPressed.Remove(l.Alternative);
-                isDirty = true;
-            }
+            RemoveAction(name, method, JustPressed);
         }
     
 
@@ -344,11 +393,7 @@ namespace Salday.InputSystem
         /// <param name="method">Method to be removed</param>
         public void RemoveJustPressedAction(KeyCode key, Action method)
         {
-            if (!JustPressed.ContainsKey(key)) return;
-            JustPressed[key].Actions -= method;
-            if (JustPressed[key].Actions.GetInvocationList().Length != 0) return;
-            JustPressed.Remove(key);
-            isDirty = true;
+            RemoveAction(key, method, JustPressed);
         }
         #endregion
 
@@ -361,13 +406,7 @@ namespace Salday.InputSystem
         /// <param name="method">Method to be added to the listener</param>
         public void AddPressedAction(string name, Action method)
         {
-            foreach (var l in Pressed)
-            {
-                if (l.Value.Name != name) continue;
-                l.Value.Actions += method;
-                isDirty = true;
-                break;
-            }
+            AddAction(name, method, Pressed);
         }
 
         /// <summary>
@@ -378,15 +417,7 @@ namespace Salday.InputSystem
         /// <param name="method">Method to be subscribed</param>
         public void AddPressedAction(KeyCode key, Action method)
         {
-            if (Pressed.ContainsKey(key))
-                Pressed[key].Actions += method;
-            else
-            {
-                var il = new InputListener(key);
-                il.Actions += method;
-                Pressed.Add(key, il);
-                isDirty = true;
-            }
+            AddAction(key, method, Pressed);
         }
 
         /// <summary>
@@ -396,18 +427,7 @@ namespace Salday.InputSystem
         /// <param name="method">Method to be removed</param>
         public void RemovePressedAction(string name, Action method)
         {
-            foreach (var l in Pressed.Values)
-            {
-                if (l.Name != name) continue;
-                l.Actions -= method;
-                if (l.Actions.GetInvocationList().Length != 0) continue;
-
-                if (Pressed.ContainsKey(l.Positive))
-                    Pressed.Remove(l.Positive);
-                if (Pressed.ContainsKey(l.Alternative))
-                    Pressed.Remove(l.Alternative);
-                isDirty = true;
-            }
+            RemoveAction(name, method, Pressed);
         }
 
         /// <summary>
@@ -417,11 +437,7 @@ namespace Salday.InputSystem
         /// <param name="method">Method to be removed</param>
         public void RemovePressedAction(KeyCode key, Action method)
         {
-            if (!Pressed.ContainsKey(key)) return;
-            Pressed[key].Actions -= method;
-            if (Pressed[key].Actions.GetInvocationList().Length != 0) return;
-            Pressed.Remove(key);
-            isDirty = true;
+            RemoveAction(key, method, Pressed);
         }
         #endregion
 
@@ -434,13 +450,7 @@ namespace Salday.InputSystem
         /// <param name="method">Method to be added to the listener</param>
         public void AddJustReleasedAction(string name, Action method)
         {
-            foreach (var l in JustReleased)
-            {
-                if (l.Value.Name != name) continue;
-                l.Value.Actions += method;
-                isDirty = true;
-                break;
-            }
+            AddAction(name, method, JustReleased);
         }
 
         /// <summary>
@@ -451,15 +461,7 @@ namespace Salday.InputSystem
         /// <param name="method">Method to be subscribed</param>
         public void AddJustReleasedAction(KeyCode key, Action method)
         {
-            if (JustReleased.ContainsKey(key))
-                JustReleased[key].Actions += method;
-            else
-            {
-                var il = new InputListener(key);
-                il.Actions += method;
-                JustReleased.Add(key, il);
-                isDirty = true;
-            }
+            AddAction(key, method, JustReleased);
         }
 
         /// <summary>
@@ -469,18 +471,7 @@ namespace Salday.InputSystem
         /// <param name="method">Method to be removed</param>
         public void RemoveJustReleasedAction(string name, Action method)
         {
-            foreach (var l in JustReleased.Values)
-            {
-                if (l.Name != name) continue;
-                l.Actions -= method;
-                if (l.Actions.GetInvocationList().Length != 0) continue;
-
-                if (JustReleased.ContainsKey(l.Positive))
-                    JustReleased.Remove(l.Positive);
-                if (JustReleased.ContainsKey(l.Alternative))
-                    JustReleased.Remove(l.Alternative);
-                isDirty = true;
-            }
+            RemoveAction(name, method, JustReleased);
         }
 
         /// <summary>
@@ -490,11 +481,7 @@ namespace Salday.InputSystem
         /// <param name="method">Method to be removed</param>
         public void RemoveJustReleasedAction(KeyCode key, Action method)
         {
-            if (!JustReleased.ContainsKey(key)) return;
-            JustReleased[key].Actions -= method;
-            if (JustReleased[key].Actions.GetInvocationList().Length != 0) return;
-            JustReleased.Remove(key);
-            isDirty = true;
+            RemoveAction(key, method, JustReleased);
         }
 
         #endregion
