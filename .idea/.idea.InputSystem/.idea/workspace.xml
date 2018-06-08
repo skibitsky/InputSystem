@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cc229edd-ffb5-4b53-8cdd-7499a3d44c8c" name="Default" comment="" />
+    <list default="true" id="cc229edd-ffb5-4b53-8cdd-7499a3d44c8c" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.InputSystem/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InputSystem/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.InputSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InputSystem/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/InputSystem/Demo/Chat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystem/Demo/Chat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/InputSystem/Demo/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystem/Demo/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/InputSystem/Scripts/InputAxis.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystem/Scripts/InputAxis.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/InputSystem/Scripts/InputAxisType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystem/Scripts/InputAxisType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/InputSystem/Scripts/InputHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystem/Scripts/InputHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/InputSystem/Scripts/InputListener.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystem/Scripts/InputListener.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/InputSystem/Scripts/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystem/Scripts/InputManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/InputSystem/Scripts/InputSaver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystem/Scripts/InputSaver.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/InputSystem/Scripts/Interfaces/IInputHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystem/Scripts/Interfaces/IInputHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/InputSystem/Scripts/StackProtector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystem/Scripts/StackProtector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/InputSystem/Scripts/UIKeyChangeButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystem/Scripts/UIKeyChangeButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UnityPackageManager/manifest.json" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -10,88 +27,213 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="InputHandler.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/InputSystem/Scripts/InputHandler.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="784">
-              <caret line="353" column="8" lean-forward="true" selection-start-line="353" selection-start-column="8" selection-end-line="353" selection-end-column="8" />
+            <state relative-caret-position="-1859">
+              <caret line="205" column="18" selection-start-line="205" selection-start-column="18" selection-end-line="205" selection-end-column="18" />
               <folding>
-                <marker date="1521995633143" expanded="false" signature="6:120" ph="..." />
-                <marker date="1521995633143" expanded="true" signature="150:18266" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="213:18264" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="229:1081" ph="Interface implementation" />
-                <marker date="1521995633143" expanded="true" signature="1133:1287" ph="/* Name of input handler represents its purpose and can be shown in settings for example ... */" />
-                <marker date="1521995633143" expanded="true" signature="1372:1562" ph="/* If true - each listener action will be invoked only once per frame. ... */" />
-                <marker date="1521995633143" expanded="true" signature="1890:2001" ph="/* InputManager sets up this value to the Cursor.lockState if the handler ... */" />
-                <marker date="1521995633143" expanded="true" signature="2268:3334" ph="Keys settings" />
-                <marker date="1521995633143" expanded="true" signature="3344:3701" ph="Axes settings" />
-                <marker date="1521995633143" expanded="true" signature="3711:4193" ph="Keys Dictionaries" />
-                <marker date="1521995633143" expanded="true" signature="4370:4419" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="4429:4539" ph="/* Asks InputManager to init this handler ... */" />
-                <marker date="1521995633143" expanded="true" signature="4571:4707" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="4717:4816" ph="/* Because each scene has unique InputManager and we have to init ... */" />
-                <marker date="1521995633143" expanded="true" signature="4884:5068" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="5102:5177" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="5187:5438" ph="/// Fills dictionaries with InputListeners from the saving file. ... " />
-                <marker date="1521995633143" expanded="true" signature="5465:7329" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="5771:6022" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="6039:6232" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="6282:6561" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="6607:6878" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="6929:7210" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="7364:7848" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="7387:7536" ph="/* If InvokeOncePerFrame, at the end of frame we have to set InputListener.Invoked to false ... */" />
-                <marker date="1521995633143" expanded="true" signature="7858:8120" ph="/// Returns all KeyCodes used in all handler's dictionaries. ... " />
-                <marker date="1521995633143" expanded="true" signature="8166:8358" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="8368:8628" ph="/// Returns InputListener from the handler by name.  ... " />
-                <marker date="1521995633143" expanded="true" signature="8682:8807" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="8817:9093" ph="/// Changes key in runtime to access listener in all dictionaries.  ... " />
-                <marker date="1521995633143" expanded="true" signature="9166:9995" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="9340:9445" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="9586:9699" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="9842:9957" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="10005:10079" ph="/// Save setting to the file. ... " />
-                <marker date="1521995633143" expanded="true" signature="10113:10176" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="10210:10285" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="10304:10543" ph="/// Adds action to the InputListiner of specific name in  ... " />
-                <marker date="1521995633143" expanded="true" signature="10643:10906" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="10707:10896" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="10924:11163" ph="/// Adds action to the InputListiner of specific name in  ... " />
-                <marker date="1521995633143" expanded="true" signature="11263:11563" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="11372:11553" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="11581:11815" ph="/// Removes action from InputListener based on the name of listener ... " />
-                <marker date="1521995633143" expanded="true" signature="11917:12388" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="11969:12378" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="12406:12658" ph="/// Removes action from InputListener based on the KeyCode. ... " />
-                <marker date="1521995633143" expanded="true" signature="12760:12998" ph="{...}" />
-                <marker date="1521995633143" expanded="false" signature="13096:14826" ph="JustPressed" />
-                <marker date="1521995633143" expanded="false" signature="13124:13406" ph="/// Adds passed action to the InputListiner of specific name in  ... " />
-                <marker date="1521995633143" expanded="true" signature="13475:13547" ph="{...}" />
-                <marker date="1521995633143" expanded="false" signature="13557:13854" ph="/// Adds passed action to the InputListener of specific key in  ... " />
-                <marker date="1521995633143" expanded="true" signature="13923:13993" ph="{...}" />
-                <marker date="1521995633143" expanded="false" signature="14003:14244" ph="/// Removes passed action from InputListener based on the name of listener ... " />
-                <marker date="1521995633143" expanded="true" signature="14316:14389" ph="{...}" />
-                <marker date="1521995633143" expanded="false" signature="14404:14663" ph="/// Removes passed action from InputListener based on the KeyCode. ... " />
-                <marker date="1521995633143" expanded="true" signature="14735:14807" ph="{...}" />
-                <marker date="1521995633143" expanded="false" signature="14836:16514" ph="Pressed" />
-                <marker date="1521995633143" expanded="true" signature="14860:15138" ph="/// Adds passed action to the InputListener of specific name in  ... " />
-                <marker date="1521995633143" expanded="true" signature="15203:15269" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="15279:15572" ph="/// Adds passed action to the InputListener of specific key in  ... " />
-                <marker date="1521995633143" expanded="true" signature="15637:15702" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="15712:15953" ph="/// Removes passed action from InputListener based on the name of listener ... " />
-                <marker date="1521995633143" expanded="true" signature="16021:16090" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="16100:16359" ph="/// Removes passed action from InputListener based on the KeyCode. ... " />
-                <marker date="1521995633143" expanded="true" signature="16427:16495" ph="{...}" />
-                <marker date="1521995633143" expanded="false" signature="16524:18258" ph="JustReleased" />
-                <marker date="1521995633143" expanded="true" signature="16553:16836" ph="/// Adds passed action to the InputListener of specific name in  ... " />
-                <marker date="1521995633143" expanded="true" signature="16906:16977" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="16987:17285" ph="/// Adds passed action to the InputListiner of specific key in  ... " />
-                <marker date="1521995633143" expanded="true" signature="17355:17425" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="17435:17676" ph="/// Removes passed action from InputListener based on the name of listener ... " />
-                <marker date="1521995633143" expanded="true" signature="17749:17823" ph="{...}" />
-                <marker date="1521995633143" expanded="true" signature="17833:18092" ph="/// Removes passed action from InputListener based on the KeyCode. ... " />
-                <marker date="1521995633143" expanded="true" signature="18165:18238" ph="{...}" />
+                <marker date="1528499714209" expanded="false" signature="6:120" ph="..." />
+                <marker date="1528499714209" expanded="true" signature="153:18321" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="216:18319" ph="{...}" />
+                <marker date="1528499714209" expanded="false" signature="232:1084" ph="Interface implementation" />
+                <marker date="1528499714209" expanded="true" signature="1136:1290" ph="/* Name of input handler represents its purpose and can be shown in settings for example ... */" />
+                <marker date="1528499714209" expanded="true" signature="1375:1565" ph="/* If true - each listener action will be invoked only once per frame. ... */" />
+                <marker date="1528499714209" expanded="true" signature="1893:2004" ph="/* InputManager sets up this value to the Cursor.lockState if the handler ... */" />
+                <marker date="1528499714209" expanded="false" signature="2271:3337" ph="Keys settings" />
+                <marker date="1528499714209" expanded="false" signature="3347:3704" ph="Axes settings" />
+                <marker date="1528499714209" expanded="false" signature="3714:4196" ph="Keys Dictionaries" />
+                <marker date="1528499714209" expanded="true" signature="4373:4422" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="4432:4542" ph="/* Asks InputManager to init this handler ... */" />
+                <marker date="1528499714209" expanded="true" signature="4574:4710" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="4720:4819" ph="/* Because each scene has unique InputManager and we have to init ... */" />
+                <marker date="1528499714209" expanded="true" signature="4887:5071" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="5105:5180" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="5190:5441" ph="/// Fills dictionaries with InputListeners from the saving file. ... " />
+                <marker date="1528499714209" expanded="true" signature="5468:7332" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="5774:6025" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="6042:6235" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="6285:6564" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="6610:6881" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="6932:7213" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="7367:7903" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="7423:7572" ph="/* If InvokeOncePerFrame, at the end of frame we have to set InputListener.Invoked to false ... */" />
+                <marker date="1528499714209" expanded="true" signature="7913:8175" ph="/// Returns all KeyCodes used in all handler's dictionaries. ... " />
+                <marker date="1528499714209" expanded="true" signature="8221:8413" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="8423:8683" ph="/// Returns InputListener from the handler by name.  ... " />
+                <marker date="1528499714209" expanded="true" signature="8737:8862" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="8872:9148" ph="/// Changes key in runtime to access listener in all dictionaries.  ... " />
+                <marker date="1528499714209" expanded="true" signature="9221:10050" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="9395:9500" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="9641:9754" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="9897:10012" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="10060:10134" ph="/// Save setting to the file. ... " />
+                <marker date="1528499714209" expanded="true" signature="10168:10231" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="10265:10340" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="10359:10598" ph="/// Adds action to the InputListiner of specific name in  ... " />
+                <marker date="1528499714209" expanded="true" signature="10698:10961" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="10762:10951" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="10979:11218" ph="/// Adds action to the InputListiner of specific name in  ... " />
+                <marker date="1528499714209" expanded="true" signature="11318:11618" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="11427:11608" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="11636:11870" ph="/// Removes action from InputListener based on the name of listener ... " />
+                <marker date="1528499714209" expanded="true" signature="11972:12443" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="12024:12433" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="12461:12713" ph="/// Removes action from InputListener based on the KeyCode. ... " />
+                <marker date="1528499714209" expanded="true" signature="12815:13053" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="13151:14881" ph="JustPressed" />
+                <marker date="1528499714209" expanded="true" signature="13179:13461" ph="/// Adds passed action to the InputListiner of specific name in  ... " />
+                <marker date="1528499714209" expanded="true" signature="13530:13602" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="13612:13909" ph="/// Adds passed action to the InputListener of specific key in  ... " />
+                <marker date="1528499714209" expanded="true" signature="13978:14048" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="14058:14299" ph="/// Removes passed action from InputListener based on the name of listener ... " />
+                <marker date="1528499714209" expanded="true" signature="14371:14444" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="14459:14718" ph="/// Removes passed action from InputListener based on the KeyCode. ... " />
+                <marker date="1528499714209" expanded="true" signature="14790:14862" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="14891:16569" ph="Pressed" />
+                <marker date="1528499714209" expanded="true" signature="14915:15193" ph="/// Adds passed action to the InputListener of specific name in  ... " />
+                <marker date="1528499714209" expanded="true" signature="15258:15324" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="15334:15627" ph="/// Adds passed action to the InputListener of specific key in  ... " />
+                <marker date="1528499714209" expanded="true" signature="15692:15757" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="15767:16008" ph="/// Removes passed action from InputListener based on the name of listener ... " />
+                <marker date="1528499714209" expanded="true" signature="16076:16145" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="16155:16414" ph="/// Removes passed action from InputListener based on the KeyCode. ... " />
+                <marker date="1528499714209" expanded="true" signature="16482:16550" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="16579:18313" ph="JustReleased" />
+                <marker date="1528499714209" expanded="true" signature="16608:16891" ph="/// Adds passed action to the InputListener of specific name in  ... " />
+                <marker date="1528499714209" expanded="true" signature="16961:17032" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="17042:17340" ph="/// Adds passed action to the InputListiner of specific key in  ... " />
+                <marker date="1528499714209" expanded="true" signature="17410:17480" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="17490:17731" ph="/// Removes passed action from InputListener based on the name of listener ... " />
+                <marker date="1528499714209" expanded="true" signature="17804:17878" ph="{...}" />
+                <marker date="1528499714209" expanded="true" signature="17888:18147" ph="/// Removes passed action from InputListener based on the KeyCode. ... " />
+                <marker date="1528499714209" expanded="true" signature="18220:18293" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlayerController.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/InputSystem/Demo/PlayerController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <marker date="1528496217987" expanded="false" signature="6:47" ph="..." />
+                <marker date="1528496217987" expanded="true" signature="94:1792" ph="{...}" />
+                <marker date="1528496217987" expanded="true" signature="191:1419" ph="{...}" />
+                <marker date="1528496217987" expanded="true" signature="329:664" ph="/* It can also be accessed by asking it right from InputManager using a name ... */" />
+                <marker date="1528496217987" expanded="true" signature="1024:1140" ph="/* It's possible to add new actions by passing KeyCode or Listener name ... */" />
+                <marker date="1528496217987" expanded="true" signature="1236:1404" ph="/* And you can always delete any added action from listener ... */" />
+                <marker date="1528496217987" expanded="true" signature="1446:1618" ph="{...}" />
+                <marker date="1528496217987" expanded="true" signature="1461:1612" ph="/* And you can always ask for certain Handler key anytime ... */" />
+                <marker date="1528496217987" expanded="true" signature="1639:1703" ph="{...}" />
+                <marker date="1528496217987" expanded="true" signature="1725:1790" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InputManager.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/InputSystem/Scripts/InputManager.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
+              <folding>
+                <marker date="1528496216816" expanded="false" signature="6:111" ph="..." />
+                <marker date="1528496216816" expanded="true" signature="144:24609" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="192:24607" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="530:626" ph="/* All axes which should return value from UnityEngine.Input ... */" />
+                <marker date="1528496216816" expanded="true" signature="1102:1221" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="1314:2332" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="2342:2430" ph="/* In case InputManager was disabled or deleted ... */" />
+                <marker date="1528496216816" expanded="true" signature="2463:2679" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="2788:6155" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="6191:6293" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="6336:6470" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="6480:6559" ph="/// Invokes all listener's actions ... " />
+                <marker date="1528496216816" expanded="true" signature="6643:7067" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="6798:7003" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="7106:7259" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="7269:7434" ph="/// Deletes InputHandler form AllInputHandlers and Stack ... " />
+                <marker date="1528496216816" expanded="true" signature="7491:7735" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="7745:7873" ph="/// Updates a list of all used keys and axes. ... " />
+                <marker date="1528496216816" expanded="true" signature="7907:8830" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="8084:8690" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="8399:8639" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="8840:9012" ph="/// Inits the handler and adds it to the AllInputHandlers dictionary. ... " />
+                <marker date="1528496216816" expanded="true" signature="9075:9277" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="9146:9267" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="9287:9545" ph="/// Returns inited IInputHandler by name from AllInputHandlers. ... " />
+                <marker date="1528496216816" expanded="true" signature="9603:9729" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="9739:9859" ph="/// Returns the value of the virtual axis identified by axisName if allowed ... " />
+                <marker date="1528496216816" expanded="true" signature="9905:10080" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="10090:10318" ph="/// Adds passed IInputHandler to the top of stack ... " />
+                <marker date="1528496216816" expanded="true" signature="10379:10492" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="10502:10775" ph="/// Adds inited IInputHandler to the top of stack by name from AllInputHandlers collection ... " />
+                <marker date="1528496216816" expanded="true" signature="10831:11146" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="10952:11105" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="11156:11259" ph="/// Removes last added input handler from the top of stack ... " />
+                <marker date="1528496216816" expanded="true" signature="11309:11449" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="11459:11615" ph="/// Removes passed input handler from the stack ... " />
+                <marker date="1528496216816" expanded="true" signature="11686:12043" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="12053:12221" ph="/// Removes passed input handler from the stack ... " />
+                <marker date="1528496216816" expanded="true" signature="12285:12647" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="12657:12926" ph="/// Returns true while the user holds down the key identified by InputListener name. ... " />
+                <marker date="1528496216816" expanded="true" signature="12978:14394" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="13001:13139" ph="/* We have to get keys of the listener, ... */" />
+                <marker date="1528496216816" expanded="true" signature="13266:13546" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="13390:13532" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="13718:14344" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="13792:14238" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="13866:13959" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="13988:14216" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="14404:14682" ph="/// Returns true while the user holds down the key identified by InputListener name. ... " />
+                <marker date="1528496216816" expanded="true" signature="14737:15557" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="14931:15521" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="14997:15427" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="15064:15145" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="15170:15409" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="15567:15857" ph="/// Returns true during the frame the user starts pressing down the key identified by InputListener name. ... " />
+                <marker date="1528496216816" expanded="true" signature="15913:17303" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="15936:16074" ph="/* We have to get keys of the listener, ... */" />
+                <marker date="1528496216816" expanded="true" signature="16201:16443" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="16623:17253" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="16701:17147" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="16775:16868" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="16897:17125" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="17313:17603" ph="/// Returns true during the frame the user starts pressing down the key identified by InputListener name. ... " />
+                <marker date="1528496216816" expanded="true" signature="17662:18494" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="17864:18458" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="17934:18364" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="18001:18082" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="18107:18346" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="18504:18782" ph="/// Returns true during the frame the user releases the key identified by InputListener name. ... " />
+                <marker date="1528496216816" expanded="true" signature="18839:20224" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="18862:19000" ph="/* We have to get keys of the listener, ... */" />
+                <marker date="1528496216816" expanded="true" signature="19127:19369" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="19545:20174" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="19624:20068" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="19698:19791" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="19820:20046" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="20234:20518" ph="/// Returns true during the frame the user releases the key identified by InputListener name. name. ... " />
+                <marker date="1528496216816" expanded="true" signature="20578:21407" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="20776:21371" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="20847:21277" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="20914:20995" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="21020:21259" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="21417:21864" ph="/// Changes specific listener key in runtime and calls method to update UI ... " />
+                <marker date="1528496216816" expanded="true" signature="21960:22168" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="22178:22613" ph="/// Changes specific listener key in runtime and calls method to update UI ... " />
+                <marker date="1528496216816" expanded="true" signature="22716:22890" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="23017:24047" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="23219:23538" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="23310:23469" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="23593:23709" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="23726:23848" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="23884:23948" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="24144:24340" ph="{...}" />
+                <marker date="1528496216816" expanded="true" signature="24418:24586" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -99,12 +241,29 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Salday</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>Skibitsky</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/InputSystem/Demo/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/InputSystem/Scripts/InputManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/InputSystem/Scripts/InputAxis.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/InputSystem/Scripts/InputHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/InputSystem/Demo/Chat.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/Assets/InputSystem/Scripts/InputManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/InputSystem/Scripts/MobileInputManager.cs" />
         <option value="$PROJECT_DIR$/Assets/InputSystem/Scripts/InputHandler.cs" />
       </list>
     </option>
@@ -121,20 +280,12 @@
   </component>
   <component name="ProjectView">
     <navigator currentView="SolutionExplorer" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="UnityExplorer">
+        <option name="show-hidden-items" value="false" />
+      </pane>
       <pane id="SolutionExplorer">
         <subPane>
           <expand>
@@ -166,6 +317,14 @@
               <item name="Assembly-CSharp" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="Assets" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="InputSystem" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Demo" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="InputSystem (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Assembly-CSharp" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Assets" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="InputSystem" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="Scripts" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
           </expand>
@@ -174,9 +333,11 @@
         <option name="show-file-system" value="false" />
         <option name="show-all-items" value="false" />
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RunDashboard">
@@ -192,10 +353,13 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" />
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+    </configuration>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
+  <component name="SvnConfiguration">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -205,11 +369,12 @@
       <option name="presentableId" value="Default" />
       <updated>1521993506844</updated>
       <workItem from="1521993509297" duration="1416000" />
+      <workItem from="1528493706590" duration="2442000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1416000" />
+    <option name="totallyTimeSpent" value="3858000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -224,116 +389,342 @@
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Unit Tests" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21123321" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Errors In Solution" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Unit Tests" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21367522" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Unity" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="NuGet" order="7" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
+  <component name="UnityProjectConfiguration" isUnityUI="true" />
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Assets/InputSystem/Scripts/InputHandler.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="784">
+        <state relative-caret-position="5295">
           <caret line="353" column="8" lean-forward="true" selection-start-line="353" selection-start-column="8" selection-end-line="353" selection-end-column="8" />
           <folding>
-            <marker date="1521995633143" expanded="false" signature="6:120" ph="..." />
-            <marker date="1521995633143" expanded="true" signature="150:18266" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="213:18264" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="229:1081" ph="Interface implementation" />
-            <marker date="1521995633143" expanded="true" signature="1133:1287" ph="/* Name of input handler represents its purpose and can be shown in settings for example ... */" />
-            <marker date="1521995633143" expanded="true" signature="1372:1562" ph="/* If true - each listener action will be invoked only once per frame. ... */" />
-            <marker date="1521995633143" expanded="true" signature="1890:2001" ph="/* InputManager sets up this value to the Cursor.lockState if the handler ... */" />
-            <marker date="1521995633143" expanded="true" signature="2268:3334" ph="Keys settings" />
-            <marker date="1521995633143" expanded="true" signature="3344:3701" ph="Axes settings" />
-            <marker date="1521995633143" expanded="true" signature="3711:4193" ph="Keys Dictionaries" />
-            <marker date="1521995633143" expanded="true" signature="4370:4419" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="4429:4539" ph="/* Asks InputManager to init this handler ... */" />
-            <marker date="1521995633143" expanded="true" signature="4571:4707" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="4717:4816" ph="/* Because each scene has unique InputManager and we have to init ... */" />
-            <marker date="1521995633143" expanded="true" signature="4884:5068" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="5102:5177" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="5187:5438" ph="/// Fills dictionaries with InputListeners from the saving file. ... " />
-            <marker date="1521995633143" expanded="true" signature="5465:7329" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="5771:6022" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="6039:6232" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="6282:6561" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="6607:6878" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="6929:7210" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="7364:7848" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="7387:7536" ph="/* If InvokeOncePerFrame, at the end of frame we have to set InputListener.Invoked to false ... */" />
-            <marker date="1521995633143" expanded="true" signature="7858:8120" ph="/// Returns all KeyCodes used in all handler's dictionaries. ... " />
-            <marker date="1521995633143" expanded="true" signature="8166:8358" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="8368:8628" ph="/// Returns InputListener from the handler by name.  ... " />
-            <marker date="1521995633143" expanded="true" signature="8682:8807" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="8817:9093" ph="/// Changes key in runtime to access listener in all dictionaries.  ... " />
-            <marker date="1521995633143" expanded="true" signature="9166:9995" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="9340:9445" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="9586:9699" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="9842:9957" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="10005:10079" ph="/// Save setting to the file. ... " />
-            <marker date="1521995633143" expanded="true" signature="10113:10176" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="10210:10285" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="10304:10543" ph="/// Adds action to the InputListiner of specific name in  ... " />
-            <marker date="1521995633143" expanded="true" signature="10643:10906" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="10707:10896" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="10924:11163" ph="/// Adds action to the InputListiner of specific name in  ... " />
-            <marker date="1521995633143" expanded="true" signature="11263:11563" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="11372:11553" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="11581:11815" ph="/// Removes action from InputListener based on the name of listener ... " />
-            <marker date="1521995633143" expanded="true" signature="11917:12388" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="11969:12378" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="12406:12658" ph="/// Removes action from InputListener based on the KeyCode. ... " />
-            <marker date="1521995633143" expanded="true" signature="12760:12998" ph="{...}" />
-            <marker date="1521995633143" expanded="false" signature="13096:14826" ph="JustPressed" />
-            <marker date="1521995633143" expanded="false" signature="13124:13406" ph="/// Adds passed action to the InputListiner of specific name in  ... " />
-            <marker date="1521995633143" expanded="true" signature="13475:13547" ph="{...}" />
-            <marker date="1521995633143" expanded="false" signature="13557:13854" ph="/// Adds passed action to the InputListener of specific key in  ... " />
-            <marker date="1521995633143" expanded="true" signature="13923:13993" ph="{...}" />
-            <marker date="1521995633143" expanded="false" signature="14003:14244" ph="/// Removes passed action from InputListener based on the name of listener ... " />
-            <marker date="1521995633143" expanded="true" signature="14316:14389" ph="{...}" />
-            <marker date="1521995633143" expanded="false" signature="14404:14663" ph="/// Removes passed action from InputListener based on the KeyCode. ... " />
-            <marker date="1521995633143" expanded="true" signature="14735:14807" ph="{...}" />
-            <marker date="1521995633143" expanded="false" signature="14836:16514" ph="Pressed" />
-            <marker date="1521995633143" expanded="true" signature="14860:15138" ph="/// Adds passed action to the InputListener of specific name in  ... " />
-            <marker date="1521995633143" expanded="true" signature="15203:15269" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="15279:15572" ph="/// Adds passed action to the InputListener of specific key in  ... " />
-            <marker date="1521995633143" expanded="true" signature="15637:15702" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="15712:15953" ph="/// Removes passed action from InputListener based on the name of listener ... " />
-            <marker date="1521995633143" expanded="true" signature="16021:16090" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="16100:16359" ph="/// Removes passed action from InputListener based on the KeyCode. ... " />
-            <marker date="1521995633143" expanded="true" signature="16427:16495" ph="{...}" />
-            <marker date="1521995633143" expanded="false" signature="16524:18258" ph="JustReleased" />
-            <marker date="1521995633143" expanded="true" signature="16553:16836" ph="/// Adds passed action to the InputListener of specific name in  ... " />
-            <marker date="1521995633143" expanded="true" signature="16906:16977" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="16987:17285" ph="/// Adds passed action to the InputListiner of specific key in  ... " />
-            <marker date="1521995633143" expanded="true" signature="17355:17425" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="17435:17676" ph="/// Removes passed action from InputListener based on the name of listener ... " />
-            <marker date="1521995633143" expanded="true" signature="17749:17823" ph="{...}" />
-            <marker date="1521995633143" expanded="true" signature="17833:18092" ph="/// Removes passed action from InputListener based on the KeyCode. ... " />
-            <marker date="1521995633143" expanded="true" signature="18165:18238" ph="{...}" />
+            <marker date="1528499714209" expanded="false" signature="6:120" ph="..." />
+            <marker date="1528499714209" expanded="true" signature="153:18321" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="216:18319" ph="{...}" />
+            <marker date="1528499714209" expanded="false" signature="232:1084" ph="Interface implementation" />
+            <marker date="1528499714209" expanded="true" signature="1136:1290" ph="/* Name of input handler represents its purpose and can be shown in settings for example ... */" />
+            <marker date="1528499714209" expanded="true" signature="1375:1565" ph="/* If true - each listener action will be invoked only once per frame. ... */" />
+            <marker date="1528499714209" expanded="true" signature="1893:2004" ph="/* InputManager sets up this value to the Cursor.lockState if the handler ... */" />
+            <marker date="1528499714209" expanded="false" signature="2271:3337" ph="Keys settings" />
+            <marker date="1528499714209" expanded="false" signature="3347:3704" ph="Axes settings" />
+            <marker date="1528499714209" expanded="false" signature="3714:4196" ph="Keys Dictionaries" />
+            <marker date="1528499714209" expanded="true" signature="4373:4422" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="4432:4542" ph="/* Asks InputManager to init this handler ... */" />
+            <marker date="1528499714209" expanded="true" signature="4574:4710" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="4720:4819" ph="/* Because each scene has unique InputManager and we have to init ... */" />
+            <marker date="1528499714209" expanded="true" signature="4887:5071" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="5105:5180" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="5190:5441" ph="/// Fills dictionaries with InputListeners from the saving file. ... " />
+            <marker date="1528499714209" expanded="true" signature="5468:7332" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="5774:6025" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="6042:6235" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="6285:6564" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="6610:6881" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="6932:7213" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="7367:7903" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="7423:7572" ph="/* If InvokeOncePerFrame, at the end of frame we have to set InputListener.Invoked to false ... */" />
+            <marker date="1528499714209" expanded="true" signature="7913:8175" ph="/// Returns all KeyCodes used in all handler's dictionaries. ... " />
+            <marker date="1528499714209" expanded="true" signature="8221:8413" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="8423:8683" ph="/// Returns InputListener from the handler by name.  ... " />
+            <marker date="1528499714209" expanded="true" signature="8737:8862" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="8872:9148" ph="/// Changes key in runtime to access listener in all dictionaries.  ... " />
+            <marker date="1528499714209" expanded="true" signature="9221:10050" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="9395:9500" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="9641:9754" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="9897:10012" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="10060:10134" ph="/// Save setting to the file. ... " />
+            <marker date="1528499714209" expanded="true" signature="10168:10231" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="10265:10340" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="10359:10598" ph="/// Adds action to the InputListiner of specific name in  ... " />
+            <marker date="1528499714209" expanded="true" signature="10698:10961" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="10762:10951" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="10979:11218" ph="/// Adds action to the InputListiner of specific name in  ... " />
+            <marker date="1528499714209" expanded="true" signature="11318:11618" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="11427:11608" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="11636:11870" ph="/// Removes action from InputListener based on the name of listener ... " />
+            <marker date="1528499714209" expanded="true" signature="11972:12443" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="12024:12433" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="12461:12713" ph="/// Removes action from InputListener based on the KeyCode. ... " />
+            <marker date="1528499714209" expanded="true" signature="12815:13053" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="13151:14881" ph="JustPressed" />
+            <marker date="1528499714209" expanded="true" signature="13179:13461" ph="/// Adds passed action to the InputListiner of specific name in  ... " />
+            <marker date="1528499714209" expanded="true" signature="13530:13602" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="13612:13909" ph="/// Adds passed action to the InputListener of specific key in  ... " />
+            <marker date="1528499714209" expanded="true" signature="13978:14048" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="14058:14299" ph="/// Removes passed action from InputListener based on the name of listener ... " />
+            <marker date="1528499714209" expanded="true" signature="14371:14444" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="14459:14718" ph="/// Removes passed action from InputListener based on the KeyCode. ... " />
+            <marker date="1528499714209" expanded="true" signature="14790:14862" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="14891:16569" ph="Pressed" />
+            <marker date="1528499714209" expanded="true" signature="14915:15193" ph="/// Adds passed action to the InputListener of specific name in  ... " />
+            <marker date="1528499714209" expanded="true" signature="15258:15324" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="15334:15627" ph="/// Adds passed action to the InputListener of specific key in  ... " />
+            <marker date="1528499714209" expanded="true" signature="15692:15757" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="15767:16008" ph="/// Removes passed action from InputListener based on the name of listener ... " />
+            <marker date="1528499714209" expanded="true" signature="16076:16145" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="16155:16414" ph="/// Removes passed action from InputListener based on the KeyCode. ... " />
+            <marker date="1528499714209" expanded="true" signature="16482:16550" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="16579:18313" ph="JustReleased" />
+            <marker date="1528499714209" expanded="true" signature="16608:16891" ph="/// Adds passed action to the InputListener of specific name in  ... " />
+            <marker date="1528499714209" expanded="true" signature="16961:17032" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="17042:17340" ph="/// Adds passed action to the InputListiner of specific key in  ... " />
+            <marker date="1528499714209" expanded="true" signature="17410:17480" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="17490:17731" ph="/// Removes passed action from InputListener based on the name of listener ... " />
+            <marker date="1528499714209" expanded="true" signature="17804:17878" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="17888:18147" ph="/// Removes passed action from InputListener based on the KeyCode. ... " />
+            <marker date="1528499714209" expanded="true" signature="18220:18293" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/InputSystem/Scripts/InputManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <marker date="1528496216816" expanded="false" signature="6:111" ph="..." />
+            <marker date="1528496216816" expanded="true" signature="144:24609" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="192:24607" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="530:626" ph="/* All axes which should return value from UnityEngine.Input ... */" />
+            <marker date="1528496216816" expanded="true" signature="1102:1221" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="1314:2332" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="2342:2430" ph="/* In case InputManager was disabled or deleted ... */" />
+            <marker date="1528496216816" expanded="true" signature="2463:2679" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="2788:6155" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="6191:6293" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="6336:6470" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="6480:6559" ph="/// Invokes all listener's actions ... " />
+            <marker date="1528496216816" expanded="true" signature="6643:7067" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="6798:7003" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="7106:7259" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="7269:7434" ph="/// Deletes InputHandler form AllInputHandlers and Stack ... " />
+            <marker date="1528496216816" expanded="true" signature="7491:7735" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="7745:7873" ph="/// Updates a list of all used keys and axes. ... " />
+            <marker date="1528496216816" expanded="true" signature="7907:8830" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="8084:8690" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="8399:8639" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="8840:9012" ph="/// Inits the handler and adds it to the AllInputHandlers dictionary. ... " />
+            <marker date="1528496216816" expanded="true" signature="9075:9277" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="9146:9267" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="9287:9545" ph="/// Returns inited IInputHandler by name from AllInputHandlers. ... " />
+            <marker date="1528496216816" expanded="true" signature="9603:9729" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="9739:9859" ph="/// Returns the value of the virtual axis identified by axisName if allowed ... " />
+            <marker date="1528496216816" expanded="true" signature="9905:10080" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="10090:10318" ph="/// Adds passed IInputHandler to the top of stack ... " />
+            <marker date="1528496216816" expanded="true" signature="10379:10492" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="10502:10775" ph="/// Adds inited IInputHandler to the top of stack by name from AllInputHandlers collection ... " />
+            <marker date="1528496216816" expanded="true" signature="10831:11146" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="10952:11105" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="11156:11259" ph="/// Removes last added input handler from the top of stack ... " />
+            <marker date="1528496216816" expanded="true" signature="11309:11449" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="11459:11615" ph="/// Removes passed input handler from the stack ... " />
+            <marker date="1528496216816" expanded="true" signature="11686:12043" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="12053:12221" ph="/// Removes passed input handler from the stack ... " />
+            <marker date="1528496216816" expanded="true" signature="12285:12647" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="12657:12926" ph="/// Returns true while the user holds down the key identified by InputListener name. ... " />
+            <marker date="1528496216816" expanded="true" signature="12978:14394" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="13001:13139" ph="/* We have to get keys of the listener, ... */" />
+            <marker date="1528496216816" expanded="true" signature="13266:13546" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="13390:13532" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="13718:14344" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="13792:14238" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="13866:13959" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="13988:14216" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="14404:14682" ph="/// Returns true while the user holds down the key identified by InputListener name. ... " />
+            <marker date="1528496216816" expanded="true" signature="14737:15557" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="14931:15521" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="14997:15427" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="15064:15145" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="15170:15409" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="15567:15857" ph="/// Returns true during the frame the user starts pressing down the key identified by InputListener name. ... " />
+            <marker date="1528496216816" expanded="true" signature="15913:17303" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="15936:16074" ph="/* We have to get keys of the listener, ... */" />
+            <marker date="1528496216816" expanded="true" signature="16201:16443" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="16623:17253" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="16701:17147" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="16775:16868" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="16897:17125" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="17313:17603" ph="/// Returns true during the frame the user starts pressing down the key identified by InputListener name. ... " />
+            <marker date="1528496216816" expanded="true" signature="17662:18494" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="17864:18458" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="17934:18364" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="18001:18082" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="18107:18346" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="18504:18782" ph="/// Returns true during the frame the user releases the key identified by InputListener name. ... " />
+            <marker date="1528496216816" expanded="true" signature="18839:20224" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="18862:19000" ph="/* We have to get keys of the listener, ... */" />
+            <marker date="1528496216816" expanded="true" signature="19127:19369" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="19545:20174" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="19624:20068" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="19698:19791" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="19820:20046" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="20234:20518" ph="/// Returns true during the frame the user releases the key identified by InputListener name. name. ... " />
+            <marker date="1528496216816" expanded="true" signature="20578:21407" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="20776:21371" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="20847:21277" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="20914:20995" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="21020:21259" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="21417:21864" ph="/// Changes specific listener key in runtime and calls method to update UI ... " />
+            <marker date="1528496216816" expanded="true" signature="21960:22168" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="22178:22613" ph="/// Changes specific listener key in runtime and calls method to update UI ... " />
+            <marker date="1528496216816" expanded="true" signature="22716:22890" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="23017:24047" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="23219:23538" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="23310:23469" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="23593:23709" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="23726:23848" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="23884:23948" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="24144:24340" ph="{...}" />
+            <marker date="1528496216816" expanded="true" signature="24418:24586" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/InputSystem/Scripts/MobileInputManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/InputSystem/Demo/PlayerController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1528496217987" expanded="false" signature="6:47" ph="..." />
+            <marker date="1528496217987" expanded="true" signature="94:1792" ph="{...}" />
+            <marker date="1528496217987" expanded="true" signature="191:1419" ph="{...}" />
+            <marker date="1528496217987" expanded="true" signature="329:664" ph="/* It can also be accessed by asking it right from InputManager using a name ... */" />
+            <marker date="1528496217987" expanded="true" signature="1024:1140" ph="/* It's possible to add new actions by passing KeyCode or Listener name ... */" />
+            <marker date="1528496217987" expanded="true" signature="1236:1404" ph="/* And you can always delete any added action from listener ... */" />
+            <marker date="1528496217987" expanded="true" signature="1446:1618" ph="{...}" />
+            <marker date="1528496217987" expanded="true" signature="1461:1612" ph="/* And you can always ask for certain Handler key anytime ... */" />
+            <marker date="1528496217987" expanded="true" signature="1639:1703" ph="{...}" />
+            <marker date="1528496217987" expanded="true" signature="1725:1790" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/InputSystem/Scripts/InputAxis.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1528496217936" expanded="true" signature="6:50" ph="..." />
+            <marker date="1528496217936" expanded="true" signature="83:1091" ph="{...}" />
+            <marker date="1528496217936" expanded="true" signature="138:1088" ph="{...}" />
+            <marker date="1528496217936" expanded="true" signature="649:1082" ph="{...}" />
+            <marker date="1528496217936" expanded="true" signature="684:1072" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/InputSystem/Scripts/InputHandler.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1859">
+          <caret line="205" column="18" selection-start-line="205" selection-start-column="18" selection-end-line="205" selection-end-column="18" />
+          <folding>
+            <marker date="1528499714209" expanded="false" signature="6:120" ph="..." />
+            <marker date="1528499714209" expanded="true" signature="153:18321" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="216:18319" ph="{...}" />
+            <marker date="1528499714209" expanded="false" signature="232:1084" ph="Interface implementation" />
+            <marker date="1528499714209" expanded="true" signature="1136:1290" ph="/* Name of input handler represents its purpose and can be shown in settings for example ... */" />
+            <marker date="1528499714209" expanded="true" signature="1375:1565" ph="/* If true - each listener action will be invoked only once per frame. ... */" />
+            <marker date="1528499714209" expanded="true" signature="1893:2004" ph="/* InputManager sets up this value to the Cursor.lockState if the handler ... */" />
+            <marker date="1528499714209" expanded="false" signature="2271:3337" ph="Keys settings" />
+            <marker date="1528499714209" expanded="false" signature="3347:3704" ph="Axes settings" />
+            <marker date="1528499714209" expanded="false" signature="3714:4196" ph="Keys Dictionaries" />
+            <marker date="1528499714209" expanded="true" signature="4373:4422" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="4432:4542" ph="/* Asks InputManager to init this handler ... */" />
+            <marker date="1528499714209" expanded="true" signature="4574:4710" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="4720:4819" ph="/* Because each scene has unique InputManager and we have to init ... */" />
+            <marker date="1528499714209" expanded="true" signature="4887:5071" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="5105:5180" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="5190:5441" ph="/// Fills dictionaries with InputListeners from the saving file. ... " />
+            <marker date="1528499714209" expanded="true" signature="5468:7332" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="5774:6025" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="6042:6235" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="6285:6564" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="6610:6881" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="6932:7213" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="7367:7903" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="7423:7572" ph="/* If InvokeOncePerFrame, at the end of frame we have to set InputListener.Invoked to false ... */" />
+            <marker date="1528499714209" expanded="true" signature="7913:8175" ph="/// Returns all KeyCodes used in all handler's dictionaries. ... " />
+            <marker date="1528499714209" expanded="true" signature="8221:8413" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="8423:8683" ph="/// Returns InputListener from the handler by name.  ... " />
+            <marker date="1528499714209" expanded="true" signature="8737:8862" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="8872:9148" ph="/// Changes key in runtime to access listener in all dictionaries.  ... " />
+            <marker date="1528499714209" expanded="true" signature="9221:10050" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="9395:9500" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="9641:9754" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="9897:10012" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="10060:10134" ph="/// Save setting to the file. ... " />
+            <marker date="1528499714209" expanded="true" signature="10168:10231" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="10265:10340" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="10359:10598" ph="/// Adds action to the InputListiner of specific name in  ... " />
+            <marker date="1528499714209" expanded="true" signature="10698:10961" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="10762:10951" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="10979:11218" ph="/// Adds action to the InputListiner of specific name in  ... " />
+            <marker date="1528499714209" expanded="true" signature="11318:11618" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="11427:11608" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="11636:11870" ph="/// Removes action from InputListener based on the name of listener ... " />
+            <marker date="1528499714209" expanded="true" signature="11972:12443" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="12024:12433" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="12461:12713" ph="/// Removes action from InputListener based on the KeyCode. ... " />
+            <marker date="1528499714209" expanded="true" signature="12815:13053" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="13151:14881" ph="JustPressed" />
+            <marker date="1528499714209" expanded="true" signature="13179:13461" ph="/// Adds passed action to the InputListiner of specific name in  ... " />
+            <marker date="1528499714209" expanded="true" signature="13530:13602" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="13612:13909" ph="/// Adds passed action to the InputListener of specific key in  ... " />
+            <marker date="1528499714209" expanded="true" signature="13978:14048" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="14058:14299" ph="/// Removes passed action from InputListener based on the name of listener ... " />
+            <marker date="1528499714209" expanded="true" signature="14371:14444" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="14459:14718" ph="/// Removes passed action from InputListener based on the KeyCode. ... " />
+            <marker date="1528499714209" expanded="true" signature="14790:14862" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="14891:16569" ph="Pressed" />
+            <marker date="1528499714209" expanded="true" signature="14915:15193" ph="/// Adds passed action to the InputListener of specific name in  ... " />
+            <marker date="1528499714209" expanded="true" signature="15258:15324" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="15334:15627" ph="/// Adds passed action to the InputListener of specific key in  ... " />
+            <marker date="1528499714209" expanded="true" signature="15692:15757" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="15767:16008" ph="/// Removes passed action from InputListener based on the name of listener ... " />
+            <marker date="1528499714209" expanded="true" signature="16076:16145" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="16155:16414" ph="/// Removes passed action from InputListener based on the KeyCode. ... " />
+            <marker date="1528499714209" expanded="true" signature="16482:16550" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="16579:18313" ph="JustReleased" />
+            <marker date="1528499714209" expanded="true" signature="16608:16891" ph="/// Adds passed action to the InputListener of specific name in  ... " />
+            <marker date="1528499714209" expanded="true" signature="16961:17032" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="17042:17340" ph="/// Adds passed action to the InputListiner of specific key in  ... " />
+            <marker date="1528499714209" expanded="true" signature="17410:17480" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="17490:17731" ph="/// Removes passed action from InputListener based on the name of listener ... " />
+            <marker date="1528499714209" expanded="true" signature="17804:17878" ph="{...}" />
+            <marker date="1528499714209" expanded="true" signature="17888:18147" ph="/// Removes passed action from InputListener based on the KeyCode. ... " />
+            <marker date="1528499714209" expanded="true" signature="18220:18293" ph="{...}" />
           </folding>
         </state>
       </provider>

@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Xml.Serialization;
 
-namespace Salday.InputSystem
+namespace Skibitsky.InputSystem
 {
     [Serializable]
     public class InputListener

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Salday.InputSystem;
+using Skibitsky.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {

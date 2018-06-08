@@ -4,7 +4,7 @@ using System.IO;
 using System.Xml.Serialization;
 using UnityEngine;
 
-namespace Salday.InputSystem
+namespace Skibitsky.InputSystem
 {
     public class InputSaver
     {

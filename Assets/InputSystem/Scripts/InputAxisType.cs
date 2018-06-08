@@ -1,4 +1,4 @@
-﻿namespace Salday.InputSystem
+﻿namespace Skibitsky.InputSystem
 {
     public enum InputAxisType
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System;
 using System.Collections;
 
-namespace Salday.InputSystem
+namespace Skibitsky.InputSystem
 {
     public class InputManager : MonoBehaviour
     {
@@ -40,6 +40,7 @@ namespace Salday.InputSystem
         // If there is an old Stack in StackProtector, use it.
         private void Start()
         {
+            #if UNITY_STANDALONE
             var stackProtector = FindObjectOfType<StackProtector>();
 
             if (stackProtector != null)
@@ -66,21 +67,26 @@ namespace Salday.InputSystem
                     .AddComponent<StackProtector>();
 
             UpdateStack();
+            #endif
         }
 
         // In case InputManager was disabled or deleted
         // We have to protect the Stack!
         private void OnDisable()
         {
+            #if UNITY_STANDALONE 
             if (InputHandlersStack.Count != 0)
             {
                 StackProtector.ProtectedStack = InputHandlersStack;
             }
+            #endif
         }
 
         // Loops through all InputHandlers in the stack (from top to bottom) 
         private void Update()
         {
+            
+            #if UNITY_STANDALONE
             CheckHandlersDirty();
 
             // Loop through all keys used in handlers from the stack
@@ -164,11 +170,14 @@ namespace Salday.InputSystem
                     }
                 }
             }
+            #endif
         }
 
         private void FixedUpdate()
         {
+            #if UNITY_STANDALONE
             SetCursorState();
+            #endif
         }
 
         private void CheckHandlersDirty()
@@ -452,19 +461,19 @@ namespace Salday.InputSystem
             // We have to get keys of the listener,
             // that's why it's better to pass listener, 
             // no need for foreach and if
-            var Pos = KeyCode.None;
-            var Alt = KeyCode.None;
+            var pos = KeyCode.None;
+            var alt = KeyCode.None;
             foreach (var h in AllInputHandlers.Values)
             {
                 var l = h.GetListener(listenerName);
                 if (l == null || listenerName != l.Name) continue;
-                Pos = l.Positive;
-                Alt = l.Alternative;
+                pos = l.Positive;
+                alt = l.Alternative;
                 break;
             }
 
             var block = false;
-            if (!Input.GetKeyDown(Pos) && !Input.GetKeyDown(Alt)) return false;
+            if (!Input.GetKeyDown(pos) && !Input.GetKeyDown(alt)) return false;
             {
                 foreach (var h in InputHandlersStack)
                 {
@@ -476,7 +485,7 @@ namespace Salday.InputSystem
                         }
                         else
                         {
-                            if (l.Positive != Pos && l.Alternative != Alt) continue;
+                            if (l.Positive != pos && l.Alternative != alt) continue;
                             if (h.BlockKeys)
                                 block = true;
                         }
@@ -662,6 +671,7 @@ namespace Salday.InputSystem
             UpdateStack();
         }
 
+        #if UNITY_EDITOR
         [ContextMenu("Debug Stack")]
         private void DebugStack()
         {
@@ -675,6 +685,6 @@ namespace Salday.InputSystem
             var txt = KeyCodesToListen.Aggregate(string.Empty, (current, kc) => current + string.Format("{0} \n", kc));
             Debug.Log(txt);
         }
-
+        #endif
     }
 }

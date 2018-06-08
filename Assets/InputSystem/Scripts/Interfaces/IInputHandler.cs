@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Salday.InputSystem
+namespace Skibitsky.InputSystem
 {
     public interface IInputHandler
     {

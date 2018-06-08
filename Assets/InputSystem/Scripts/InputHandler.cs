@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
-namespace Salday.InputSystem
+namespace Skibitsky.InputSystem
 {
     public class InputHandler : MonoBehaviour, IInputHandler
     {
@@ -191,6 +191,7 @@ namespace Salday.InputSystem
 
         private void LateUpdate()
         {
+            #if UNITY_STANDALONE
             // If InvokeOncePerFrame, at the end of frame we have to set InputListener.Invoked to false
             // That it could be invoked in the next frame
             if (!InvokeOncePerFrame) return;
@@ -202,6 +203,7 @@ namespace Salday.InputSystem
 
             foreach (var il in JustReleased)
                 il.Value.Invoked = false;
+            #endif
         }
 
         /// <summary>
